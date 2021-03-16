@@ -1,8 +1,10 @@
 // import phoenix html helpers (optional)
-import 'phoenix_html'
+// import 'phoenix_html'
 
+import "tailwindcss/tailwind.css"
+// import "@fortawesome/free-regular-svg-icons"
 // any css we import will be bundled in app.css
-import '../css/global.css'
+import '../css/global.scss'
 
 // import our component
 import App from './App.svelte'

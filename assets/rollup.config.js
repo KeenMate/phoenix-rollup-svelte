@@ -1,30 +1,44 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import autoPreprocess from 'svelte-preprocess';
-import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
+import svelte from "rollup-plugin-svelte";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import autoPreprocess from "svelte-preprocess";
+import postcss from "rollup-plugin-postcss";
+import {
+  terser
+} from "rollup-plugin-terser";
+// import scss from "rollup-plugin-scss";
+import replace from "@rollup/plugin-replace";
+import copy from "rollup-plugin-copy";
+import includeEnv from "svelte-environment-variables";
 
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
 
 export default {
   // main entry point
-  input: 'js/main.js',
+  input: "js/main.js",
 
   // define output path & format and request sourcemaps
   output: {
     sourcemap: true,
-    format: 'iife',
-    name: 'app',
-    file: '../priv/static/js/app.js'
+    format: "iife",
+    name: "app",
+    file: "../priv/static/js/app.js",
   },
 
   // define all the plugins we'd like to use
   plugins: [
+    replace({
+      ...includeEnv(),
+    }),
+    // scss(),
     // the postcss plugin is used to preprocess css
     // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
-    postcss(),
+    postcss({
+      config: {
+        path: "./postcss.config.js",
+      },
+    }),
 
     // the svelte plugin converts .svelte files to .js equivalent
     svelte({
@@ -36,9 +50,9 @@ export default {
       dev: !production,
 
       // take css output and write it to priv/static
-      css: css => {
-        css.write('app.css');
-      }
+      css: (css) => {
+        css.write("app.css");
+      },
     }),
 
     // the resolve plugin resolves modules located in node_modules folder
@@ -48,18 +62,28 @@ export default {
 
       // a dependency in node_modules may have svelte inside it's node_modules folder
       // dedupe option prevents bundling those duplicates
-      dedupe: ['svelte']
+      dedupe: ["svelte"],
+    }),
+    // {
+    //   "node_modules/@fortawesome/fontawesome-free/webfonts": "../priv/static",
+    //   verbose: true,
+    // }
+    copy({
+      targets: [{
+        src: "node_modules/@fortawesome/fontawesome-free/webfonts",
+        dest: "../priv/static"
+      }]
     }),
 
     // use commonjs import convention
     commonjs(),
 
     // for production builds, use minification
-    production && terser()
+    production && terser(),
   ],
 
   // don't clear terminal screen after each re-compilation
   watch: {
-    clearScreen: false
-  }
-}
+    clearScreen: false,
+  },
+};
