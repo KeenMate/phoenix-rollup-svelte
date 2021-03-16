@@ -27,4 +27,4 @@ rollup_test-*.tar
 # this depending on your deployment strategy.
 /priv/static/
 
-/assets/node_modules
+node_modules

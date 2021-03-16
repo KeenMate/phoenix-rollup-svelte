@@ -6,7 +6,6 @@ import postcss from "rollup-plugin-postcss";
 import {
   terser
 } from "rollup-plugin-terser";
-// import scss from "rollup-plugin-scss";
 import replace from "@rollup/plugin-replace";
 import copy from "rollup-plugin-copy";
 import includeEnv from "svelte-environment-variables";
@@ -31,7 +30,6 @@ export default {
     replace({
       ...includeEnv(),
     }),
-    // scss(),
     // the postcss plugin is used to preprocess css
     // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
     postcss({

@@ -7,15 +7,15 @@ import "tailwindcss/tailwind.css"
 import '../css/global.scss'
 
 // import our component
-import App from './App.svelte'
+// import App from './App.svelte'
 
-// instantiate the component
-new App({
-  // mount it to `document.body`
-  target: document.body,
+// // instantiate the component
+// new App({
+//   // mount it to `document.body`
+//   target: document.body,
 
-  // pass some props (optional)
-  props: {
-    name: 'woman'
-  }
-})
+//   // pass some props (optional)
+//   props: {
+//     name: 'woman'
+//   }
+// })
