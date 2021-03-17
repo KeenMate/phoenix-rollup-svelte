@@ -24,7 +24,7 @@ defmodule RollupTestWeb.Endpoint do
     at: "/",
     from: :rollup_test,
     gzip: false,
-    only: ~w(css fonts images webfonts js favicon.ico robots.txt)
+    only: ~w(css fonts images webfonts js components favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
