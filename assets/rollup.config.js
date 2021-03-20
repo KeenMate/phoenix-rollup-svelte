@@ -9,6 +9,7 @@ import {
 import replace from "@rollup/plugin-replace";
 import copy from "rollup-plugin-copy";
 import includeEnv from "svelte-environment-variables";
+import virtual from "@rollup/plugin-virtual"
 
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
@@ -145,8 +146,32 @@ const svelteApp = name => ({
   },
 });
 
+const manifest = {
+  input: "entry",
+  output: {
+    dir: "../priv/components"
+  },
+  plugins: [
+    virtual({
+      entry: `export default { test: "Hello, world!" }`
+    }),
+    {
+      name: 'whatever',
+      generateBundle(outputOptions, bundle) {
+        const entry = Object.values(bundle).find((chunk) => chunk.isEntry);
+        this.emitFile({
+          type: 'asset',
+          fileName: 'entry.json',
+          source: JSON.stringify({name: "number", value: "Hello, world!"})
+        });
+      }
+    }
+  ],
+}
+
 export default [
   main,
   svelteApp("numbers"),
-  svelteApp("connect")
+  svelteApp("connect"),
+  manifest
 ]

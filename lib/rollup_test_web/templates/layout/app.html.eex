@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/js/main.css") %>"/>
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
 
-  <%= render_existing view_module(@conn), "scripts." <> view_template(@conn), assigns %>
-  <%= render_existing view_module(@conn), "styles." <> view_template(@conn), assigns %>
+  <%= render "component_styles.html", assigns %>
 </head>
 
 <body class="text-gray-800 antialiased">
@@ -21,6 +20,9 @@
   <%= @inner_content %>
 
   <%= render "_footer.html", assigns: @conn.assigns %>
+
+  <%= render "component_scripts.html", assigns %>
+  <%= render view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 </body>
 
 </html>

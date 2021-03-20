@@ -1,0 +1,3 @@
+<%= for script <- @component_scripts || [] do %>
+  <script src="<%= script %>"></script>
+<% end %>
