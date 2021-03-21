@@ -1,25 +1,16 @@
 defmodule RollupTest.Components do
-  alias RollupTestWeb.Router.Helpers, as: Routes
+  import RollupTest.Helpers.Path
+
+  @manifest_path "/static/components/manifest.json"
 
   def components() do
-    %{
-      numbers: %{
-        scripts: [
-          Routes.static_path(RollupTestWeb.Endpoint, "/components/numbers/numbers.js")
-        ],
-        styles: [
-          Routes.static_path(RollupTestWeb.Endpoint, "/components/numbers/numbers.css")
-        ]
-      },
-      connect: %{
-        scripts: [
-          Routes.static_path(RollupTestWeb.Endpoint, "/components/connect/connect.js")
-        ],
-        styles: [
-          Routes.static_path(RollupTestWeb.Endpoint, "/components/connect/connect.css")
-        ]
-      }
-    }
+    File.read!(priv(@manifest_path))
+    |> Jason.decode!()
+  end
+
+  def component_list() do
+    components()
+    |> Map.keys()
   end
 
   def collect_scripts([]), do: []
@@ -33,7 +24,7 @@ defmodule RollupTest.Components do
     else
       components
       |> Enum.map(&elem(&1, 1))
-      |> Enum.flat_map(fn c -> c.scripts end)
+      |> Enum.map(fn c -> c["scriptPath"] end)
     end
   end
 
@@ -48,7 +39,7 @@ defmodule RollupTest.Components do
     else
       components
       |> Enum.map(&elem(&1, 1))
-      |> Enum.flat_map(fn c -> c.styles end)
+      |> Enum.map(fn c -> c["stylePath"] end)
     end
   end
 end
