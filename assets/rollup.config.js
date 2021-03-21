@@ -14,6 +14,8 @@ import virtual from "@rollup/plugin-virtual"
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
 
+let apps = ["numbers", "connect"]
+
 const componentBasePath = (name) => `/components/${name}/`
 const componentScriptPath = (name) => `${componentBasePath(name)}${name}.js`
 const componentStylePath = (name) => `${componentBasePath(name)}${name}.css`
@@ -170,19 +172,12 @@ const svelteAppConfiguration = name => ({
 const manifestConfiguration = manifest => ({
   input: "entry",
   output: {
-    dir: "../priv/components"
+    dir: "../priv/static/components"
   },
   plugins: [
+    virtual({entry: ""}),
     manifestExportPlugin(manifest)
   ],
-})
-
-const manifestConfiguration = manifest => ({
-  input: "entry",
-  output: {
-    dir: "../priv/components"
-  },
-
 })
 
 let svelteApps = (apps) => {
@@ -192,10 +187,10 @@ let svelteApps = (apps) => {
   }
 }
 
-let apps = svelteApps(["numbers", "connect"])
+let svelteConfiguration = svelteApps(apps)
 
 export default [
   main,
-  ...apps.configurations,
-  manifestConfiguration(apps.manifest)
+  ...svelteConfiguration.configurations,
+  manifestConfiguration(svelteConfiguration.manifest)
 ]
