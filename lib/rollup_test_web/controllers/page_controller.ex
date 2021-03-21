@@ -5,8 +5,7 @@ defmodule RollupTestWeb.PageController do
 
   def index(conn, _params) do
     conn
-    |> assign(:additional_scripts, collect_scripts([:numbers, :connect]))
-    |> assign(:additional_styles, collect_styles([:numbers, :connect]))
+    |> include(["numbers", "connect"])
     |> render("index.html")
   end
 end

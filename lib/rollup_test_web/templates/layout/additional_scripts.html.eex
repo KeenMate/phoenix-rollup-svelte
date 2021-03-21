@@ -1,3 +1,3 @@
-<%= for script <- @component_scripts || [] do %>
+<%= for script <- @additional_scripts || [] do %>
   <script src="<%= script %>"></script>
 <% end %>

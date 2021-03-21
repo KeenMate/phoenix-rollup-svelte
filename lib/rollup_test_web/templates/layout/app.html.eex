@@ -9,9 +9,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
   <title>Profile | Tailwind Starter Kit by Creative Tim</title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/js/main.css") %>"/>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.css", assigns %>
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
 
-  <%= render "component_styles.html", assigns %>
+  <%= render "additional_styles.html", assigns %>
 </head>
 
 <body class="text-gray-800 antialiased">
@@ -21,8 +22,8 @@
 
   <%= render "_footer.html", assigns: @conn.assigns %>
 
-  <%= render "component_scripts.html", assigns %>
-  <%= render view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
+  <%= render "additional_scripts.html", assigns %>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 </body>
 
 </html>

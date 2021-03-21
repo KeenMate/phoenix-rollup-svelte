@@ -42,4 +42,10 @@ defmodule RollupTest.Components do
       |> Enum.map(fn c -> c["stylePath"] end)
     end
   end
+
+  def include(conn, components) when is_list(components) do
+    conn
+    |> Plug.Conn.assign(:additional_scripts, collect_scripts(components))
+    |> Plug.Conn.assign(:additional_styles, collect_styles(components))
+  end
 end
