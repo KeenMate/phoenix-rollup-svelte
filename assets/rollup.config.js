@@ -14,7 +14,7 @@ const production = process.env.MIX_ENV == "prod";
 
 
 // --------- Define apps here ---------
-let apps = ["numbers", "connect"]
+let apps = ["numbers", "connect", "like"]
 // ------------------------------------
 
 const appBasePath = (name) => `/apps/${name}`
@@ -140,6 +140,10 @@ const svelteAppConfiguration = name => ({
 
       // enable run-time checks when not in production
       dev: !production,
+
+      // enable custom elements API
+      // TODO: config value
+      customElement: name === "like",
 
       // take css output and write it to priv/static
       css: (css) => {

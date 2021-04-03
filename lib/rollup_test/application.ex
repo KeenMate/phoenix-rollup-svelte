@@ -14,7 +14,8 @@ defmodule RollupTest.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: RollupTest.PubSub},
       # Start the Endpoint (http/https)
-      RollupTestWeb.Endpoint
+      RollupTestWeb.Endpoint,
+      RollupTest.Images
       # Start a worker by calling: RollupTest.Worker.start_link(arg)
       # {RollupTest.Worker, arg}
     ]

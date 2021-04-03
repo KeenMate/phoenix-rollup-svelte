@@ -48,19 +48,13 @@
               <i class="fas fa-university mr-2 text-lg text-gray-500"></i>University of Computer Science
             </div>
           </div>
-          <div class="mt-10 py-10 border-t border-gray-300 text-center">
-            <div class="flex flex-wrap justify-center">
-              <div class="w-full lg:w-9/12 px-4">
-                <p class="mb-4 text-lg leading-relaxed text-gray-800">
-                  An artist of considerable range, Jenna the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                  performs and records all of his own music, giving it a
-                  warm, intimate feel with a solid groove structure. An
-                  artist of considerable range.
-                </p>
-                <a href="#pablo" class="font-normal text-pink-500">Show more</a>
-              </div>
+          <div class="grid grid-cols-3 gap-4">
+            <%= for {image, index} <- Enum.with_index(@images) do %>
+            <div>
+              <img src="<%= elem(image, 0) %>"/>
+              <like-btn liked="<%= if elem(image, 1) do "true" else "false" end %>" id="<%= index %>"></like-btn>
             </div>
+            <% end %>
           </div>
         </div>
       </div>

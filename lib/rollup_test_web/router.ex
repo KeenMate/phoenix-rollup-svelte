@@ -19,6 +19,13 @@ defmodule RollupTestWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", RollupTestWeb do
+    pipe_through :api
+
+    put "/like", ApiController, :like
+    delete "/like", ApiController, :unlike
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", RollupTestWeb do
   #   pipe_through :api
