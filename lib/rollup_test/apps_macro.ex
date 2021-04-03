@@ -1,6 +1,4 @@
-defmodule RollupTest.ComponentsMacro do
-  @manifest_path "/static/components/manifest.json"
-
+defmodule RollupTest.AppsMacro do
   defmacro __using__(options) do
     path = Keyword.fetch!(options, :manifest_path)
     manifest = File.read!(Path.join(:code.priv_dir(:rollup_test), path)) |> Jason.decode!()
@@ -15,14 +13,14 @@ defmodule RollupTest.ComponentsMacro do
   defmacro __before_compile__(env) do
     manifest = Module.get_attribute(env.module, :manifest)
 
-    Enum.map(manifest, fn {_, component} ->
+    Enum.map(manifest, fn {_, app} ->
       quote do
-        def component_style(unquote(component["name"])) do
-          unquote(component["stylePath"])
+        def app_style(unquote(app["name"])) do
+          unquote(app["stylePath"])
         end
 
-        def component_script(unquote(component["name"])) do
-          unquote(component["scriptPath"])
+        def app_script(unquote(app["name"])) do
+          unquote(app["scriptPath"])
         end
       end
     end)

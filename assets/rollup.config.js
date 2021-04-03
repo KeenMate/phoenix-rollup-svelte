@@ -3,9 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import autoPreprocess from "svelte-preprocess";
 import postcss from "rollup-plugin-postcss";
-import {
-  terser
-} from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import copy from "rollup-plugin-copy";
 import includeEnv from "svelte-environment-variables";
@@ -14,11 +12,14 @@ import virtual from "@rollup/plugin-virtual"
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
 
-let apps = ["numbers", "connect"]
 
-const componentBasePath = (name) => `/components/${name}/`
-const componentScriptPath = (name) => `${componentBasePath(name)}${name}.js`
-const componentStylePath = (name) => `${componentBasePath(name)}${name}.css`
+// --------- Define apps here ---------
+let apps = ["numbers", "connect"]
+// ------------------------------------
+
+const appBasePath = (name) => `/apps/${name}`
+const appScriptPath = (name) => `${appBasePath(name)}/${name}.js`
+const appStylePath = (name) => `${appBasePath(name)}/${name}.css`
 
 const manifestExportPlugin = manifest => ({
   name: 'manifestExport',
@@ -33,8 +34,8 @@ const manifestExportPlugin = manifest => ({
 
 const manifestEntry = (name) => ({
   name: name,
-  scriptPath: componentScriptPath(name),
-  stylePath: componentStylePath(name)
+  scriptPath: appScriptPath(name),
+  stylePath: appStylePath(name)
 })
 
 const main = {
@@ -54,6 +55,7 @@ const main = {
     replace({
       ...includeEnv(),
     }),
+
     // the postcss plugin is used to preprocess css
     // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
     postcss({
@@ -86,10 +88,7 @@ const main = {
       // dedupe option prevents bundling those duplicates
       dedupe: ["svelte"],
     }),
-    // {
-    //   "node_modules/@fortawesome/fontawesome-free/webfonts": "../priv/static",
-    //   verbose: true,
-    // }
+
     copy({
       targets: [{
         src: "node_modules/@fortawesome/fontawesome-free/webfonts",
@@ -111,15 +110,17 @@ const main = {
 };
 
 const svelteAppConfiguration = name => ({
+  
+
   // main entry point
-  input: `components/${name}/js/main.js`,
+  input: `.${appBasePath(name)}/js/main.js`,
 
   // define output path & format and request sourcemaps
   output: {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: `../priv/static${componentScriptPath(name)}`,
+    file: `../priv/static${appScriptPath(name)}`,
   },
 
   // define all the plugins we'd like to use
@@ -172,7 +173,7 @@ const svelteAppConfiguration = name => ({
 const manifestConfiguration = manifest => ({
   input: "entry",
   output: {
-    dir: "../priv/static/components"
+    dir: "../priv/static/apps"
   },
   plugins: [
     virtual({entry: ""}),
