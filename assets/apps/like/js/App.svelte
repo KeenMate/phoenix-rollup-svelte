@@ -3,6 +3,7 @@
 <script>
   export let id;
   export let liked;
+  export let csrf;
 
   function likeClicked() {
     if (liked !== "true") {
@@ -20,7 +21,8 @@
     fetch("/api/like", {
         method: method,
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrf
         },
         body: JSON.stringify({id: id})
       });

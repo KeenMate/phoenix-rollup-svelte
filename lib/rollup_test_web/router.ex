@@ -9,6 +9,13 @@ defmodule RollupTestWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :session_api do
+    plug :accepts, ["json"]
+    plug :fetch_session
+    plug :protect_from_forgery
+  end
+
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -20,7 +27,7 @@ defmodule RollupTestWeb.Router do
   end
 
   scope "/api", RollupTestWeb do
-    pipe_through :api
+    pipe_through :session_api
 
     put "/like", ApiController, :like
     delete "/like", ApiController, :unlike
