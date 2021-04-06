@@ -1,1 +1,9 @@
-Hello
+<script>
+window.onload = function() {
+  var elements = document.querySelectorAll("[data-component='like']");
+
+  elements.forEach(function(element) {
+    window.components.like(element, element.dataset.id, element.dataset.liked);
+  })
+}
+</script>

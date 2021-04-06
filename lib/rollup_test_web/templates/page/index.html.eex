@@ -52,7 +52,7 @@
             <%= for {image, index} <- Enum.with_index(@images) do %>
             <div>
               <img src="<%= elem(image, 0) %>"/>
-              <like-btn liked="<%= if elem(image, 1) do "true" else "false" end %>" id="<%= index %>" csrf="<%= @token %>"></like-btn>
+              <span data-component="like" data-id="<%= index %>" data-liked="<%= if elem(image, 1) do "true" else "false" end %>" id="<%= index %>"/>
             </div>
             <% end %>
           </div>

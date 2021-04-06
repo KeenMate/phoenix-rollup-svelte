@@ -143,7 +143,7 @@ const svelteAppConfiguration = name => ({
 
       // enable custom elements API
       // TODO: config value
-      customElement: name === "like",
+      // customElement: name === "like",
 
       // take css output and write it to priv/static
       css: (css) => {
