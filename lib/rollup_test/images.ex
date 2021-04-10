@@ -1,7 +1,7 @@
 defmodule RollupTest.Images do
   use Agent
 
-  @images [{"/images/a.jpg", false}, {"/images/b.jpg", false}, {"/images/c.jpg", false}, {"/images/d.jpg", false}]
+  @images [{"/images/unsplash_01.jpg", false}, {"/images/unsplash_02.jpg", false}, {"/images/unsplash_03.jpg", false}, {"/images/unsplash_04.jpg", false}]
 
   def start_link(_) do
     Agent.start_link(fn -> @images end, name: __MODULE__)

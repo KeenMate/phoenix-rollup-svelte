@@ -19,7 +19,7 @@
           <div class="flex flex-wrap justify-center">
             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
               <div class="relative">
-                <img alt="..." src="./assets/img/team-2-800x800.jpg"
+                <img alt="..." src="<%= Routes.static_path(@conn, "/images/team-2-800x800.jpg") %>"
                   class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                   style="max-width: 150px;" />
               </div>
@@ -48,9 +48,9 @@
               <i class="fas fa-university mr-2 text-lg text-gray-500"></i>University of Computer Science
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-3 gap-4 pb-20">
             <%= for {image, index} <- Enum.with_index(@images) do %>
-            <div>
+            <div class="image-container">
               <img src="<%= elem(image, 0) %>"/>
               <span data-component="like" data-id="<%= index %>" data-liked="<%= if elem(image, 1) do "true" else "false" end %>" id="<%= index %>"/>
             </div>

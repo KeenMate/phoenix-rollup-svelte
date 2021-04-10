@@ -33,3 +33,7 @@
 >
   {#if liked === "true"}Unlike{:else}Like{/if}
 </button>
+
+<style>
+  
+</style>

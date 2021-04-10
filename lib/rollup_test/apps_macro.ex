@@ -15,7 +15,7 @@ defmodule RollupTest.AppsMacro do
   defmacro __before_compile__(env) do
     manifest = Module.get_attribute(env.module, :manifest)
 
-    Enum.map(manifest, fn {_, app} ->
+    [Enum.map(manifest, fn {_, app} ->
       Logger.debug("Generating code for app: #{app["name"]}")
 
       quote do
@@ -27,6 +27,16 @@ defmodule RollupTest.AppsMacro do
           unquote(app["scriptPath"])
         end
       end
-    end)
+    end),
+    quote do
+      def app_style(app_name) do
+        raise "Style for application: #{app_name} not available"
+      end
+
+      def app_script(app_name) do
+        raise "Script for application: #{app_name} not available"
+      end
+    end
+  ]
   end
 end

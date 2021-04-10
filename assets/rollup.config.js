@@ -14,6 +14,7 @@ const production = process.env.MIX_ENV == "prod";
 
 
 // --------- Define apps here ---------
+// let apps = []
 let apps = ["numbers", "connect", "like"]
 // ------------------------------------
 
@@ -93,6 +94,14 @@ const main = {
       targets: [{
         src: "node_modules/@fortawesome/fontawesome-free/webfonts",
         dest: "../priv/static"
+      },
+      {
+        src: "static/*",
+        dest: "../priv/static"
+      },
+      {
+        src: "images/*",
+        dest: "../priv/static/images"
       }]
     }),
 
