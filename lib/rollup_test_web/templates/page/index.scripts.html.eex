@@ -5,5 +5,10 @@ window.onload = function() {
   elements.forEach(function(element) {
     window.components.like(element, element.dataset.id, element.dataset.liked);
   })
+
+  var subscriptionFormElem = document.querySelector("[data-component='subscription-form']");
+
+  if(subscriptionFormElem)
+    window.components.subscriptionForm(subscriptionFormElem)
 }
 </script>

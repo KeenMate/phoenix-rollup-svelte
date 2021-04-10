@@ -15,7 +15,7 @@ const production = process.env.MIX_ENV == "prod";
 
 // --------- Define apps here ---------
 // let apps = []
-let apps = ["numbers", "connect", "like"]
+let apps = ["numbers", "connect", "like", "subscription-form"]
 // ------------------------------------
 
 const appBasePath = (name) => `/apps/${name}`
