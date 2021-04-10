@@ -17,12 +17,8 @@ defmodule RollupTestWeb.PageController do
     Logger.info("Subscribing user #{display_name} (#{email})")
 
     conn
-    |> Apps.include(["numbers", "connect", "like", "subscription-form"])
-    |> put_session(:roles, ["member"])
-    |> put_flash(:info, "Subscribed to my collection")
-    |> assign(:images, Images.get_images())
-    |> assign(:token, get_csrf_token())
-    |> render("index.html")
+    |> put_flash(:info, "You have just subscribed to my collection with email #{email}")
+    |> redirect(to: Routes.page_path(conn, :index))
 
   end
 
