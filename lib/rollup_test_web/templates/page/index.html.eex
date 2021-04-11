@@ -3,7 +3,7 @@
     <div
       class="absolute top-0 w-full h-full bg-center bg-cover"
       style="
-        background-image: url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80');
+        background-image: url('<%= Routes.static_path(@conn, "/images/unsplash_background.jpg") %>');
       "
     >
       <span
@@ -12,8 +12,9 @@
       ></span>
     </div>
     <div
+      id="angledSomething"
       class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-      style="height: 70px; transform: translateZ(0px)"
+      style="height: 70px; transform: translateZ(0px); display: none"
     >
       <svg
         class="absolute bottom-0 overflow-hidden"
@@ -96,11 +97,11 @@
             <div
             class="leading-normal mt-0 mb-2 text-left w-1/2"
           >
-          
+
             <%= form_for @conn, Routes.page_path(@conn, :subscribe), [class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"], fn f -> %>
               <span data-component="subscription-form" />
              <% end %>
-            
+
           </div>
           </div>
         </div>
