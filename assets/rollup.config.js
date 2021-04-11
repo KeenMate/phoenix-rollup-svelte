@@ -123,7 +123,10 @@ const main = {
     // for production builds, use minification
     production && terser(),
     production && filesize(),
-    !ci && visualizer()
+    !ci && visualizer({
+      filename: `stats/main.html`,
+      gzipSize: true
+    })
   ],
 
   // don't clear terminal screen after each re-compilation
@@ -133,7 +136,7 @@ const main = {
 };
 
 const svelteAppConfiguration = name => ({
-  
+
 
   // main entry point
   input: `.${appBasePath(name)}/js/main.js`,
@@ -198,7 +201,10 @@ const svelteAppConfiguration = name => ({
     // for production builds, use minification
     production && terser(),
     production && filesize(),
-    !ci && visualizer()
+    !ci && visualizer({
+      filename: `stats/${name}.html`,
+      gzipSize: true
+    })
   ],
 
   // don't clear terminal screen after each re-compilation
@@ -213,7 +219,7 @@ const manifestConfiguration = manifest => ({
     dir: "../priv/static/apps"
   },
   plugins: [
-    virtual({entry: ""}),
+    virtual({ entry: "" }),
     manifestExportPlugin(manifest)
   ],
 })

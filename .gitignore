@@ -29,4 +29,4 @@ rollup_test-*.tar
 
 node_modules
 
-/assets/stats.html
+/assets/stats/
