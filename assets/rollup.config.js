@@ -1,13 +1,14 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import autoPreprocess from "svelte-preprocess";
+import sveltePreprocess from "svelte-preprocess";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import copy from "rollup-plugin-copy";
 import includeEnv from "svelte-environment-variables";
 import virtual from "@rollup/plugin-virtual"
+import filesize from 'rollup-plugin-filesize'
 
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
@@ -56,6 +57,7 @@ const main = {
   plugins: [
     replace({
       ...includeEnv(),
+      preventAssignment: true
     }),
 
     // the postcss plugin is used to preprocess css
@@ -70,7 +72,14 @@ const main = {
     svelte({
       // the preprocessor plugin allows you to use <style type="scss"> or <script lang="typescript"> inside .svelte files
       // for more info, see: https://www.npmjs.com/package/svelte-preprocess
-      preprocess: autoPreprocess(),
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
+        postcss: {
+          config: {
+            path: "./postcss.config.js",
+          },
+        },
+      }),
 
       // enable run-time checks when not in production
       dev: !production,
@@ -111,6 +120,7 @@ const main = {
 
     // for production builds, use minification
     production && terser(),
+    production && filesize(),
   ],
 
   // don't clear terminal screen after each re-compilation
@@ -137,6 +147,7 @@ const svelteAppConfiguration = name => ({
   plugins: [
     replace({
       ...includeEnv(),
+      preventAssignment: true
     }),
     // the postcss plugin is used to preprocess css
     // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
@@ -146,7 +157,14 @@ const svelteAppConfiguration = name => ({
     svelte({
       // the preprocessor plugin allows you to use <style type="scss"> or <script lang="typescript"> inside .svelte files
       // for more info, see: https://www.npmjs.com/package/svelte-preprocess
-      preprocess: autoPreprocess(),
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
+        postcss: {
+          config: {
+            path: "./postcss.config.js",
+          },
+        },
+      }),
 
       // enable run-time checks when not in production
       dev: !production,
@@ -176,6 +194,7 @@ const svelteAppConfiguration = name => ({
 
     // for production builds, use minification
     production && terser(),
+    production && filesize(),
   ],
 
   // don't clear terminal screen after each re-compilation
