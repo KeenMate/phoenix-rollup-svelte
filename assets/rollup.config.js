@@ -12,6 +12,7 @@ import virtual from "@rollup/plugin-virtual"
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
 
+console.log("Production:", production)
 
 // --------- Define apps here ---------
 // let apps = []
