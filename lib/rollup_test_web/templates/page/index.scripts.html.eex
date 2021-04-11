@@ -1,14 +1,24 @@
 <script>
-window.onload = function() {
-  var elements = document.querySelectorAll("[data-component='like']");
+  window.addLoadEvent(function () {
+    var angledThing = document.getElementById("angledSomething");
 
-  elements.forEach(function(element) {
-    window.components.like(element, element.dataset.id, element.dataset.liked);
-  })
+    if (angledThing) angledThing.style.display = "block";
 
-  var subscriptionFormElem = document.querySelector("[data-component='subscription-form']");
+    var elements = document.querySelectorAll("[data-component='like']");
 
-  if(subscriptionFormElem)
-    window.components.subscriptionForm(subscriptionFormElem)
-}
+    elements.forEach(function (element) {
+      window.components.like(
+        element,
+        element.dataset.id,
+        element.dataset.liked
+      );
+    });
+
+    var subscriptionFormElem = document.querySelector(
+      "[data-component='subscription-form']"
+    );
+
+    if (subscriptionFormElem)
+      window.components.subscriptionForm(subscriptionFormElem);
+  });
 </script>
