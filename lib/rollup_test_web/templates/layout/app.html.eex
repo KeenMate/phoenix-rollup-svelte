@@ -13,11 +13,12 @@
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
 
   <%= render "additional_styles.html", assigns %>
+  <script async defer data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://plausible.web-02.km8.es/js/plausible.js"></script>
 </head>
 
 <body class="text-gray-800 antialiased">
   <div id="page_loader" class="w-full h-full fixed block top-0 left-0 bg-white opacity-100 z-50">
-  
+
     <div id="loader"></div>
   </div>
   <div id="page_content" style="display: none;">
@@ -42,17 +43,17 @@
           func();
         }
       }
-    }    
+    }
 
     window.addLoadEvent(function() {
       var loader = document.getElementById("page_loader")
       loader.style.display = "none";
-      
+
       var page_content = document.getElementById("page_content")
       page_content.style.display = "block";
-      
+
     });
-    
+
   </script>
 
   <%= render "additional_scripts.html", assigns %>
