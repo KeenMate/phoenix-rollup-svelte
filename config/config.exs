@@ -5,10 +5,10 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
-config :rollup_test,
-  ecto_repos: [RollupTest.Repo]
+# config :rollup_test,
+#   ecto_repos: [RollupTest.Repo]
 
 # Configures the endpoint
 config :rollup_test, RollupTestWeb.Endpoint,
@@ -28,4 +28,4 @@ config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
+import_config "#{config_env()}.exs"

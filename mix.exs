@@ -10,7 +10,8 @@ defmodule RollupTest.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -34,8 +35,8 @@ defmodule RollupTest.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.5.8"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
+      # {:phoenix_ecto, "~> 4.1"},
+      # {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -62,6 +63,16 @@ defmodule RollupTest.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+    ]
+  end
+
+  defp releases do
+    [
+      rollup_test: [
+        applications: [
+          rollup_test: :permanent
+        ]
+      ]
     ]
   end
 end
