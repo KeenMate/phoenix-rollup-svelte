@@ -1,7 +1,10 @@
 const production = process.env.MIX_ENV == "prod";
 
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: production,
+    content: ["./apps/**/*.svelte"]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},

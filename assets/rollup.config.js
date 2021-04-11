@@ -9,9 +9,11 @@ import copy from "rollup-plugin-copy";
 import includeEnv from "svelte-environment-variables";
 import virtual from "@rollup/plugin-virtual"
 import filesize from 'rollup-plugin-filesize'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // it's production mode if MIX_ENV is "prod"
 const production = process.env.MIX_ENV == "prod";
+const ci = process.env.CI == "true";
 
 console.log("Production:", production)
 
@@ -121,6 +123,7 @@ const main = {
     // for production builds, use minification
     production && terser(),
     production && filesize(),
+    !ci && visualizer()
   ],
 
   // don't clear terminal screen after each re-compilation
@@ -195,6 +198,7 @@ const svelteAppConfiguration = name => ({
     // for production builds, use minification
     production && terser(),
     production && filesize(),
+    !ci && visualizer()
   ],
 
   // don't clear terminal screen after each re-compilation

@@ -28,3 +28,5 @@ rollup_test-*.tar
 /priv/static/
 
 node_modules
+
+/assets/stats.html
