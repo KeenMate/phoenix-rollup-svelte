@@ -17,42 +17,28 @@
 
 <body class="text-gray-800 antialiased">
   <div id="page_loader" class="w-full h-full fixed block top-0 left-0 bg-white opacity-100 z-50">
-  
+
     <div id="loader"></div>
   </div>
   <div id="page_content" style="display: none;">
-  <%= render "_navigation.html", assigns: @conn.assigns %>
+    <%= render "_navigation.html", assigns: @conn.assigns %>
 
-  <%= @inner_content %>
+    <%= @inner_content %>
 
-  <%= render "_footer.html", assigns: @conn.assigns %>
-</div>
+    <%= render "_footer.html", assigns: @conn.assigns %>
+  </div>
   <script>
     // global scripts goes here
 
-    window.addLoadEvent = function(func) {
-      var oldonload = window.onload;
-      if (typeof window.onload != 'function') {
-        window.onload = func;
-      } else {
-        window.onload = function() {
-          if (oldonload) {
-            oldonload();
-          }
-          func();
-        }
-      }
-    }    
-
-    window.addLoadEvent(function() {
+    window.addEventListener("load", function() {
       var loader = document.getElementById("page_loader")
       loader.style.display = "none";
-      
+
       var page_content = document.getElementById("page_content")
       page_content.style.display = "block";
-      
+
     });
-    
+
   </script>
 
   <%= render "additional_scripts.html", assigns %>
