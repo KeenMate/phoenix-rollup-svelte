@@ -1,8 +1,24 @@
 <nav class="top-0 absolute z-40 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+      <%= link "Home", to: Routes.page_path(@conn, :index), class: "text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" %>
+      <button
+        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        type="button" onclick="toggleNavbar('example-collapse-navbar')">
+        <i class="text-white fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+      <%= link "Another page with a component", to: Routes.page_path(@conn, :another_page), class: "text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" %>
+      <button
+        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        type="button" onclick="toggleNavbar('example-collapse-navbar')">
+        <i class="text-white fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
       <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
-        href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation">Tailwind Starter Kit</a>
+        href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation">Original Tailwind Starter Kit</a>
       <button
         class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
         type="button" onclick="toggleNavbar('example-collapse-navbar')">
@@ -35,12 +51,14 @@
             href="#pablo"><i class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "></i><span
               class="lg:hidden inline-block ml-2">Star</span></a>
         </li>
-        <li class="flex items-center">
-          <button
+        <link class="flex items-center">
+          <a
             class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-            type="button" style="transition: all 0.15s ease 0s;">
-            <i class="fas fa-arrow-alt-circle-down"></i> Download
-          </button>
+            type="button" style="transition: all 0.15s ease 0s;"
+            href="https://github.com/KeenMate/phoenix-rollup-svelte"
+            >
+            <i class="fas fa-arrow-alt-circle-down"></i> GitHub Repository
+          </a>
         </li>
       </ul>
     </div>
