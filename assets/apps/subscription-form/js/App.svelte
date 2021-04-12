@@ -66,9 +66,7 @@
 <div class="flex items-center justify-between">
   <button
     bind:this={submitButton}
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    class:cursor-not-allowed = {!formIsValid}
-    class:opacity-50 = {!formIsValid}
+    class="{!formIsValid ? 'cursor-not-allowed opacity-50': ''} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
     type="submit"
     title={(!formIsValid && "Please, fill out all fields") || ""}
     disabled={!formIsValid}
