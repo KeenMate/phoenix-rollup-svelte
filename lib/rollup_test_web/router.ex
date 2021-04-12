@@ -24,6 +24,7 @@ defmodule RollupTestWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/another-page", PageController, :another_page
     post "/", PageController, :subscribe
   end
 

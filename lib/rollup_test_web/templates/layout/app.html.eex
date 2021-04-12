@@ -13,6 +13,7 @@
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
 
   <%= render "additional_styles.html", assigns %>
+  <script async defer data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://plausible.web-02.km8.es/js/plausible.js"></script>
 </head>
 
 <body class="text-gray-800 antialiased">
@@ -21,7 +22,7 @@
     <div id="loader"></div>
   </div>
   <div id="page_content" style="display: none;">
-    <%= render "_navigation.html", assigns: @conn.assigns %>
+    <%= render "_navigation.html", conn: @conn, assigns: @conn.assigns %>
 
     <%= @inner_content %>
 
