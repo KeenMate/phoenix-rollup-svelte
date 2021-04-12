@@ -11,7 +11,7 @@ environment:
 
 steps:
   - name: elixir deps get
-    image: elixir:1.11
+    image: elixir:1.11-alpine
     volumes:
     - name: mix-temp
       path: /root/.mix
@@ -31,7 +31,7 @@ steps:
     - npm run deploy --prefix assets
   
   - name: elixir deps compile
-    image: elixir:1.11
+    image: elixir:1.11-alpine
     depends_on:
     - npm assets
     volumes:
@@ -43,7 +43,7 @@ steps:
   - name: digest
     depends_on:
     - elixir deps compile
-    image: elixir:1.11
+    image: elixir:1.11-alpine
     volumes:
     - name: mix-temp
       path: /root/.mix
@@ -54,7 +54,7 @@ steps:
   - name: assemble release
     depends_on:
     - digest
-    image: elixir:1.11
+    image: elixir:1.11-alpine
     volumes:
     - name: mix-temp
       path: /root/.mix
