@@ -13,7 +13,7 @@
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
 
   <%= render "additional_styles.html", assigns %>
-  <script async defer data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://plausible.web-02.km8.es/js/plausible.js"></script>
+  <script async defer data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://stats.keenmate.services/js/plausible.js"></script>
 </head>
 
 <body class="text-gray-800 antialiased">
