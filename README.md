@@ -45,8 +45,14 @@ This component shows how can you create a dynamic form instead of using server s
 
 ## How it all works
 
+From technical point of view not that much has changed. This demo project is still a Phoenix project that you are already familiar with, we just replace Webpack content of `assets` folder with Rollup, added some new eex files and few lines of code here and there.
 
+### Whole process overview
 
+- Single Rollup config is used to build multiple Svelte apps that you can find in `assets/apps` folder
+  - These apps are build into `priv/static` folder, each to its speficic folder to be able to use them separately
+  - After all apps are build Rollup generates `manifest.json` file that is later used in Elixir macro to generate a map of available apps
+- When Phoenix application is being build it looks for the `manifest.json` file and generates a map of available apps 
 
 To start your Phoenix server:
 
