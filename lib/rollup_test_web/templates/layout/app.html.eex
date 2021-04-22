@@ -9,11 +9,11 @@
   <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/img/apple-icon.png") %>" />
   <title><%= title(@conn, assigns) %></title>
 
-  <%= render_existing "app.scripts.html", assigns %>
+  <%= render_existing RollupTestWeb.LayoutView, "app.scripts.html", assigns %>
   <%= render "additional_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
   <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 
-  <%= render_existing "app.styles.html", assigns %>
+  <%= render_existing RollupTestWeb.LayoutView, "app.styles.html", assigns %>
   <%= render "additional_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
   <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.css", assigns %>
 
