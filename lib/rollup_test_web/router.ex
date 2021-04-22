@@ -25,6 +25,7 @@ defmodule RollupTestWeb.Router do
 
     get "/", PageController, :index
     get "/another-page", PageController, :another_page
+    get "/yet-another-page", PageController, :yet_another_page
     post "/", PageController, :subscribe
   end
 

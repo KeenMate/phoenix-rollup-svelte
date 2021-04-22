@@ -19,6 +19,13 @@ defmodule RollupTestWeb.PageController do
     |> render("another_page.html")
   end
 
+  def yet_another_page(conn, _params) do
+    conn
+    |> Apps.include(["connect"])
+    |> assign(:number, 12)
+    |> render("another_page.html")
+  end
+
   def subscribe(conn, %{"displayName" => display_name, "email" => email}) do
     Logger.info("Subscribing user #{display_name} (#{email})")
 

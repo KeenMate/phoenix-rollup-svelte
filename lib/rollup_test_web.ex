@@ -33,6 +33,8 @@ defmodule RollupTestWeb do
         root: "lib/rollup_test_web/templates",
         namespace: RollupTestWeb
 
+      use Simplificator3000, :view
+
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
@@ -78,4 +80,8 @@ defmodule RollupTestWeb do
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end
+end
+
+defmodule PageTitleMacroModule do
+
 end

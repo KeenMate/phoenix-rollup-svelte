@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :rollup_test,
+  page_title: "Svelte Demo"
+
+config :simplificator_3000,
+  page_title: "Svelte Demo"
+
 # config :rollup_test,
 #   ecto_repos: [RollupTest.Repo]
 
