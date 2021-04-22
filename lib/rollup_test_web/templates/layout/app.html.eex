@@ -9,13 +9,12 @@
   <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/img/apple-icon.png") %>" />
   <title><%= title(@conn, assigns) %></title>
 
-  <%= render_existing RollupTestWeb.LayoutView, "app.scripts.html", assigns %>
+  <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
   <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
-  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 
   <%= render_existing RollupTestWeb.LayoutView, "app.styles.html", assigns %>
   <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
-  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.css", assigns %>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
 
   <script async data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://stats.keenmate.services/js/plausible.js"></script>
 </head>
@@ -32,19 +31,9 @@
 
     <%= render "_footer.html" %>
   </div>
-  <script>
-    // global scripts goes here
 
-    window.addEventListener("load", function() {
-      var loader = document.getElementById("page_loader")
-      loader.style.display = "none";
-
-      var page_content = document.getElementById("page_content")
-      page_content.style.display = "block";
-
-    });
-
-  </script>
+  <%= render_existing RollupTestWeb.LayoutView, "app.scripts.html", assigns %>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 </body>
 
 </html>

@@ -1,10 +1,15 @@
+import AppsManager from '../../../js/AppsManager';
 import App from './App.svelte'
 
 // instantiate the component
-new App({
-  // mount it to `document.body`
-  target: document.getElementById("numbers-container"),
+function constructor(element) {
+  new App({
+    // mount it to `document.body`
+    target: element,
+  
+    // pass some props (optional)
+    props: element.dataset
+  })
+}
 
-  // pass some props (optional)
-  props: {}
-})
+AppsManager.register("numbers", constructor);

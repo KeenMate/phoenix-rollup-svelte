@@ -1,10 +1,14 @@
 <script>
   let connected = false;
+  let connecting = false;
 
   function connect() {
+    connecting = true;
+
     setTimeout(() => {
       connected = true;
-    }, 1500);  
+      connecting = false;
+    }, 900);  
   }
 </script>
 
@@ -16,6 +20,8 @@
 >
   {#if connected}
     Connected
+  {:else if connecting}
+    Connecting
   {:else}
     Connect
   {/if}

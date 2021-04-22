@@ -3,22 +3,5 @@
     var angledThing = document.getElementById("angledSomething");
 
     if (angledThing) angledThing.style.display = "block";
-
-    var elements = document.querySelectorAll("[data-component='like']");
-
-    elements.forEach(function (element) {
-      window.components.like(
-        element,
-        element.dataset.id,
-        element.dataset.liked
-      );
-    });
-
-    var subscriptionFormElem = document.querySelector(
-      "[data-component='subscription-form']"
-    );
-
-    if (subscriptionFormElem)
-      window.components.subscriptionForm(subscriptionFormElem);
   });
 </script>

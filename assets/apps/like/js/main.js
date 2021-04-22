@@ -1,16 +1,15 @@
+import AppsManager from '../../../js/AppsManager';
 import App from './App.svelte'
 
-window.components = {};
-window.components.like = function(root, id, liked) {
-  // instantiate the component
+// instantiate the component
+function constructor(element) {
   new App({
     // mount it to `document.body`
-    target: root,
-
+    target: element,
+  
     // pass some props (optional)
-    props: {
-      id: id,
-      liked: liked
-    }
+    props: element.dataset
   })
 }
+
+AppsManager.register("like", constructor);

@@ -1,10 +1,15 @@
+import AppsManager from '../../../js/AppsManager';
 import App from './App.svelte'
 
-window.components = window.components || {};
-window.components.subscriptionForm = function(elem) {
-  // instantiate the component
+// instantiate the component
+function constructor(element) {
   new App({
     // mount it to `document.body`
-    target: elem
+    target: element,
+  
+    // pass some props (optional)
+    props: element.dataset
   })
 }
+
+AppsManager.register("subscription-form", constructor);
