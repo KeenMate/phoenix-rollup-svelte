@@ -7,12 +7,16 @@
   <meta name="theme-color" content="#000000" />
   <%= csrf_meta_tag() %>
   <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/img/apple-icon.png") %>" />
-  <title>Profile | Tailwind Starter Kit by Creative Tim</title>
-  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/js/main.css") %>"/>
-  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.css", assigns %>
-  <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
+  <title><%= title(@conn, assigns) %></title>
 
+  <%= render_existing "app.scripts.html", assigns %>
+  <%= render "additional_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
+
+  <%= render_existing "app.styles.html", assigns %>
   <%= render "additional_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
+  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.css", assigns %>
+
   <script async data-domain="phoenix-rollup-svelte.demo.keenmate.com" src="https://stats.keenmate.services/js/plausible.js"></script>
 </head>
 
@@ -41,9 +45,6 @@
     });
 
   </script>
-
-  <%= render "additional_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
-  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".scripts.html", assigns %>
 </body>
 
 </html>
