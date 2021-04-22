@@ -15,13 +15,13 @@ defmodule RollupTestWeb.PageController do
 
   def another_page(conn, _params) do
     conn
-    |> Apps.include(["connect"])
+    |> Apps.include(["connect", "numbers"])
     |> render("another_page.html")
   end
 
   def yet_another_page(conn, _params) do
     conn
-    |> Apps.include(["connect"])
+    |> Apps.include(["connect", "numbers"])
     |> assign(:number, 12)
     |> render("another_page.html")
   end

@@ -1,6 +1,5 @@
 class AppsManager {
   constructor() {
-    console.log("Creating AppsManager")
     window.AppsManager = this
 
     this.apps = {}    
@@ -18,7 +17,12 @@ class AppsManager {
     Object.entries(this.apps).forEach(([name, constructor]) => {
       let elements = document.querySelectorAll(`[data-app='${name}'`);
 
-      elements.forEach(element => constructor(element));
+      elements.forEach(element => {
+        let filteredDataset = Object.entries(element.dataset).filter(([key, _]) => key !== "app")
+        let props = Object.fromEntries(filteredDataset)
+
+        constructor(element, props)
+      });
     });
   }
 }
