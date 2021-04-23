@@ -6,7 +6,7 @@ defmodule RollupTestWeb.PageController do
 
   def index(conn, _params) do
     conn
-    |> Apps.include(["numbers", "connect", "like", "subscription-form"])
+    |> Apps.include(["numbers", "connect", "like", "subscription-form", "notifications"])
     |> put_session(:roles, ["member"])
     |> assign(:images, Images.get_images())
     |> assign(:token, get_csrf_token())

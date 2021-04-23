@@ -1,4 +1,4 @@
-import AppsManager from '../../../js/AppsManager';
+import AppsManager from 'apps-manager';
 import App from './App.svelte'
 
 // instantiate the component

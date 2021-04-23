@@ -1,22 +1,30 @@
 <script>
+  import NotificationManager from "notification-manager";
+
   export let id;
   export let liked;
 
-  function likeClicked() {
-    if (liked !== "true") {
-      sendRequest(true);
-      liked = "true";
-    } else {
-      sendRequest(false);
-      liked = "false";
+  async function likeClicked() {
+    try {
+      if (liked !== "true") {
+        await sendRequest(true);
+        liked = "true";
+        NotificationManager.success("Why, thank you");
+      } else {
+        await sendRequest(false);
+        liked = "false";
+        NotificationManager.success("This made me sad");
+      }
+    } catch {
+      NotificationManager.error("Error occurred");
     }
   }
 
-  function sendRequest(like) {
+  async function sendRequest(like) {
     let method = like ? "PUT" : "DELETE";
     let csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
 
-    fetch("/api/like", {
+    await fetch("/api/like", {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -35,5 +43,4 @@
 </button>
 
 <style>
-  
 </style>

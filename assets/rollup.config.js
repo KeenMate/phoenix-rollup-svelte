@@ -19,7 +19,7 @@ console.log("Production:", production)
 
 // --------- Define apps here ---------
 // let apps = []
-let apps = ["numbers", "connect", "like", "subscription-form"]
+let apps = ["numbers", "connect", "like", "subscription-form", "notifications"]
 // ------------------------------------
 
 const appBasePath = (name) => `/apps/${name}`
@@ -136,10 +136,10 @@ const main = {
 };
 
 const svelteAppConfiguration = name => ({
-
-
   // main entry point
   input: `.${appBasePath(name)}/js/main.js`,
+
+  external: ['apps-manager', 'notification-manager'],
 
   // define output path & format and request sourcemaps
   output: {
@@ -147,6 +147,10 @@ const svelteAppConfiguration = name => ({
     format: "iife",
     name: "app",
     file: `../priv/static${appScriptPath(name)}`,
+    globals: {
+      'apps-manager': 'AppsManager',
+      'notification-manager': 'NotificationManager'
+    }
   },
 
   // define all the plugins we'd like to use

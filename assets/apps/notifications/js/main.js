@@ -12,4 +12,4 @@ function constructor(element, props) {
   })
 }
 
-AppsManager.register("subscription-form", constructor);
+AppsManager.register("notifications", constructor);

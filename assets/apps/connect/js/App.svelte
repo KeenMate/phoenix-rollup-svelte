@@ -1,4 +1,6 @@
 <script>
+  import NotificationManager from 'notification-manager';
+
   let connected = false;
   let connecting = false;
 
@@ -8,6 +10,7 @@
     setTimeout(() => {
       connected = true;
       connecting = false;
+      NotificationManager.success("Connected!");
     }, 900);  
   }
 </script>

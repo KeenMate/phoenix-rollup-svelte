@@ -1,5 +1,6 @@
 class AppsManager {
   constructor() {
+    this.znak="hroch"
     window.AppsManager = this
 
     this.apps = {}    
@@ -27,4 +28,4 @@ class AppsManager {
   }
 }
 
-export default window.AppsManager || new AppsManager()
+window.AppsManager = new AppsManager()
