@@ -1,32 +1,67 @@
 <script>
-  import NotificationManager from 'notification-manager';
+  import NotificationManager from "notification-manager";
 
+  let state = "none";
   let connected = false;
   let connecting = false;
 
-  function connect() {
-    connecting = true;
+  function toggleConnection() {
+    switch (state) {
+      case "none":
+        simulateConnectionChange(
+          "connecting",
+          "connected",
+          "Connected! What a feeling, right?"
+        );
 
+      case "connecting":
+        NotificationManager.warn("Already connecting");
+        break;
+      case "connected":
+        simulateConnectionChange(
+          "disconnecting",
+          "disconnected",
+          "Disconnected! That was a mistake you are going to regret!"
+        );
+      case "disconnecting":
+        NotificationManager.warn("Already disconnecting! STOP PRESSURING ME!");
+        break;
+      case "disconnected":
+        simulateConnectionChange(
+          "connecting",
+          "connected",
+          "Connected again! Thank god!"
+        );
+    }
+  }
+
+  function simulateConnectionChange(tempState, finalState, message) {
+    state = tempState;
     setTimeout(() => {
-      connected = true;
-      connecting = false;
-      NotificationManager.success("Connected!");
-    }, 900);  
+      state = finalState;
+      NotificationManager.success(message);
+    }, 900);
   }
 </script>
 
 <button
-  class="{connected ? 'bg-indigo-500': 'bg-pink-500'} active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+  class="{connected
+    ? 'bg-indigo-500'
+    : 'bg-pink-500'} active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
   type="button"
   style="transition: all 0.15s ease 0s;"
-  on:click="{connect}"
+  on:click={toggleConnection}
 >
-  {#if connected}
-    Connected
-  {:else if connecting}
-    Connecting
-  {:else}
+  {#if (state === "none")}
     Connect
+  {:else if (state === "connecting")}
+    Connecting
+  {:else if (state === "connected")}
+    Connected
+  {:else if (state === "disconnecting")}
+    Disconnecting
+  {:else}
+    Disconnected
   {/if}
 </button>
 

@@ -58,12 +58,13 @@ defmodule RollupTest.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["assets.setup", "assets.build", "deps.get", "ecto.setup"],
+      setup: ["assets.setup", "assets.build", "deps.get"],
       "assets.setup": ["cmd --cd assets npm i"],
       "assets.build": ["cmd --cd assets npm run deploy"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      # "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      # "ecto.reset": ["ecto.drop", "ecto.setup"],
+      # test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["test"]
     ]
   end
 
