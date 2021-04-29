@@ -2,8 +2,6 @@
   import NotificationManager from "notification-manager";
 
   let state = "none";
-  let connected = false;
-  let connecting = false;
 
   function toggleConnection() {
     switch (state) {
@@ -13,7 +11,7 @@
           "connected",
           "Connected! What a feeling, right?"
         );
-
+        break;
       case "connecting":
         NotificationManager.warn("Already connecting");
         break;
@@ -23,6 +21,7 @@
           "disconnected",
           "Disconnected! That was a mistake you are going to regret!"
         );
+        break;
       case "disconnecting":
         NotificationManager.warn("Already disconnecting! STOP PRESSURING ME!");
         break;
@@ -32,6 +31,7 @@
           "connected",
           "Connected again! Thank god!"
         );
+        break;
     }
   }
 
@@ -45,7 +45,7 @@
 </script>
 
 <button
-  class="{connected
+  class="{state === "connected"
     ? 'bg-indigo-500'
     : 'bg-pink-500'} active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
   type="button"
