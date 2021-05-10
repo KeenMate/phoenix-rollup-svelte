@@ -8,7 +8,7 @@
 	let formIsValid = false
 
   $: {
-    formIsValid = !!displayName && !!email;
+    formIsValid = !!displayName && displayName.length > 3 && !!email;
   }
 
   function registerSubmitHandler() {
