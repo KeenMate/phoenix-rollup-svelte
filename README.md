@@ -116,11 +116,11 @@ defp aliases do
     - Add this code to allow automatic script registrations
     ```
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
-  <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
+    <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
 
-  <%= render_existing RollupTestWeb.LayoutView, "app.styles.html", assigns %>
-  <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
-  <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
+    <%= render_existing RollupTestWeb.LayoutView, "app.styles.html", assigns %>
+    <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
+    <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
     ```
   - 
 
