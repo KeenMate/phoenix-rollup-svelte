@@ -1,4 +1,4 @@
-defmodule RollupTest.AppsMacro do
+defmodule RollupTestWeb.AppsMacro do
   require Logger
 
   defmacro __using__(options) do

@@ -17,7 +17,7 @@ As a HTML/CSS framework Tailwind is used but this approach can be used with what
 - Standardize how are components registred to each page they are used on
   - And feel safe using them
 - Add new mix tasks for easier setup and build of assets
-- !!! Make your a hell of a lot easier !!!
+- !!! Make your life a hell of a lot easier !!!
 
 
 ## Demo apps (Javascript components)
@@ -94,6 +94,7 @@ defp aliases do
   - ```assets\package.template.json``` to ```assets``` folder as ```package.json```
   - ```assets\postcss.config.template.js``` to ```assets``` folder as ```postcss.config.js```
   - ```assets\rollup.config.template.js``` to ```assets``` folder as ```rollup.config.js```
+  - ```lib\rollup_test_web\helpers\*``` to ```lib\example_app_web\helpers\*```
   - ```lib\rollup_test_web\templates\layout\_component*``` to ```lib\example_app_web\templates\layout\_component*```
   - ```lib\rollup_test_web\templates\layout\app.scripts/styles.html.eex``` to ```lib\rollup_test_web\templates\layout\app.scripts/styles.html.eex```
 
@@ -101,7 +102,7 @@ defp aliases do
   - ```assets\rollup.config.js```
     - Whenever you add a new app to your apps folder modify line ```let apps =``` or keep it empty if you have no apps yet
     - Whenever you add a new common class or piece of code modify ```external: ['apps-manager'],```
-      - And it's registration below
+      - And its registration below
         ``` // 'OTHER COMMON CLASS NAME': 'OTHER COMMON CLASS FILE NAME INSIDE js FOLDER'
         globals: {
           'apps-manager': 'AppsManager'      

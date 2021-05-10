@@ -2,7 +2,8 @@ defmodule RollupTestWeb.PageController do
   use RollupTestWeb, :controller
   require Logger
 
-  alias RollupTest.{Apps, Images}
+  alias RollupTest.{Images}
+  alias RollupTestWeb.Apps
 
   def index(conn, _params) do
     conn

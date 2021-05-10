@@ -1,5 +1,5 @@
-defmodule RollupTest.Apps do
-  use RollupTest.AppsMacro, manifest_path: "/static/apps/manifest.json"
+defmodule RollupTestWeb.Apps do
+  use RollupTestWeb.AppsMacro, manifest_path: "/static/apps/manifest.json"
 
   def collect_scripts([]), do: []
 
