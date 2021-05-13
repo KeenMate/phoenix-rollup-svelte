@@ -21,7 +21,7 @@
     "sass": "^1.32.12",
     "notyf": "^3.9.0",
     "object.fromentries": "^2.0.4",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.10",
     "rollup": "^2.45.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-filesize": "^9.1.1",
