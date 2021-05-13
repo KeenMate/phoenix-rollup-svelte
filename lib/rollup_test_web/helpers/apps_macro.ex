@@ -2,8 +2,10 @@ defmodule RollupTestWeb.AppsMacro do
   require Logger
 
   defmacro __using__(options) do
+    application = Application.get_application(__MODULE__)
     path = Keyword.fetch!(options, :manifest_path)
-    manifest = File.read!(Path.join(:code.priv_dir(:rollup_test), path)) |> Jason.decode!()
+
+    manifest = File.read!(Path.join(:code.priv_dir(application), path)) |> Jason.decode!()
     manifest_escaped = Macro.escape(manifest)
 
     quote do
