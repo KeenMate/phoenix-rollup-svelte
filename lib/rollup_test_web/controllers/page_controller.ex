@@ -17,6 +17,7 @@ defmodule RollupTestWeb.PageController do
   def another_page(conn, _params) do
     conn
     |> Apps.include(["connect", "numbers"])
+    |> set_title("Another page")
     |> render("another_page.html")
   end
 

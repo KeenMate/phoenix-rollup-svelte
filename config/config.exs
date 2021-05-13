@@ -11,7 +11,8 @@ config :rollup_test,
   page_title: "Svelte Demo"
 
 config :simplificator_3000,
-  page_title: "Svelte Demo"
+  page_title: "Svelte Demo",
+  title_transformer: fn t -> "#{t} ・ Svelte Demo" end
 
 # config :rollup_test,
 #   ecto_repos: [RollupTest.Repo]

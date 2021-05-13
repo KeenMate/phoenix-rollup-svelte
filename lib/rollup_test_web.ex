@@ -20,6 +20,7 @@ defmodule RollupTestWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: RollupTestWeb
+      use Simplificator3000, :controller
 
       import Plug.Conn
       import RollupTestWeb.Gettext

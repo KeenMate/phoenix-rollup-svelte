@@ -46,7 +46,7 @@ defmodule RollupTest.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:simplificator_3000, "~> 0.1"}
+      {:simplificator_3000, "~> 0.1.0"}
     ]
   end
 
