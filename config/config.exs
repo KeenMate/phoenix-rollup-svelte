@@ -12,7 +12,7 @@ config :rollup_test,
 
 config :simplificator_3000,
   page_title: "Svelte Demo",
-  title_transformer: fn t -> "#{t} ・ Svelte Demo" end
+  title_separator: "・"
 
 # config :rollup_test,
 #   ecto_repos: [RollupTest.Repo]
