@@ -14,9 +14,10 @@ As a HTML/CSS framework Tailwind is used but this approach can be used with what
 - Be able to have custom CSS rendered for each page at the &lt;head&gt; section of the final rendered content
 - Replace Webpack with Rollup
 - Be able to use Svelte components in server side rendered pages
-- Standardize how are components registred to each page they are used on
+- Standardize how are components registered on pages they are used on
   - And feel safe using them
 - Add new mix tasks for easier setup and build of assets
+- Have a centralized way to setup (dynamic) page title, from both controller and view
 - !!! Make your life a hell of a lot easier !!!
 
 
