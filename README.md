@@ -44,6 +44,10 @@ CSRF token is stored into &lt;head&gt; section where the component looks before 
 
 This component shows how can you create a dynamic form instead of using server side input helpers. Input fields are still rendered inside a server rendered form tag but we render inputs and validate everything on the client in a Svelte component and control when it's submitted from it.
 
+### Page title - requires our simple package simplificator_3000
+
+Page title helper is used in app.html.eex that looks for :page_title key in the connection assigns. Page title can be set from controller or view depending on what you prefer. Sometimes it makes sense to set all data in controller and sometimes you would use view, it makes no difference to the template helper.  
+
 ## How it all works
 
 From technical point of view not that much has changed. This demo project is still a Phoenix project that you are already familiar with, we just replace Webpack content of `assets` folder with Rollup, added some new eex files and few lines of code here and there.
@@ -63,6 +67,9 @@ From technical point of view not that much has changed. This demo project is sti
 ```
 
 ## How to use this
+
+For easier usage there is a _\_template_ folder that contains all necessary files. _\_template/lib/replace_with_project_name_web_ should be renamed to your web project or the files should be copied out of it to your web project.  
+
 
 1. Create new application, for example with  
 ```mix phx.new --no-webpack example-app --module ExampleApp --app example_app ```
@@ -88,24 +95,13 @@ defp aliases do
     ]
   end
 ```
-4. Create ```assets``` folder in your the root directory with following structure  
+4. After copy of ```assets``` folder you should have following structure  
   - ```apps``` for Svelte applications/components  
   - ```css``` for global scripts  
   - ```images``` for static images copied to ``priv/static/images``  
   - ```js``` for ``main.js`` that is the main entry point for all common Javascript code shared among all (or some) apps, like notification manager, event bus, basic rest providers and so on
 
-5. Copy these files from this repository  
-  - ```assets\css\global.template.css``` to ```assets\css``` folder as ```global.scss```  
-  - ```assets\js\AppsManager.js``` to ```assets\js``` folder, serves as an automatic apps loader  
-  - ```assets\js\main.template.json``` to ```assets\js``` folder as ```main.js```  
-  - ```assets\package.template.json``` to ```assets``` folder as ```package.json```  
-  - ```assets\postcss.config.template.js``` to ```assets``` folder as ```postcss.config.js```  
-  - ```assets\rollup.config.template.js``` to ```assets``` folder as ```rollup.config.js```  
-  - ```lib\rollup_test_web\helpers\*``` to ```lib\example_app_web\helpers\*```  
-  - ```lib\rollup_test_web\templates\layout\_component*``` to ```lib\example_app_web\templates\layout\_component*```  
-  - ```lib\rollup_test_web\templates\layout\app.scripts/styles.html.eex``` to ```lib\rollup_test_web\templates\layout\app.scripts/styles.html.eex```  
-
-6. Modify these files  
+5. Modify these files  
     - ```assets\rollup.config.js```
         - Whenever you add a new app to your apps folder modify line ```let apps =``` or keep it empty if you have no apps yet
         - Whenever you add a new common class or piece of code modify ```external: ['apps-manager']```
@@ -121,7 +117,7 @@ defp aliases do
         - Global scss is imported here to be part of global css file
         - Whenever you add a new common class or piece of code modify add an import here to include it in the main package
   - ```lib\example_app\templates\layout\app.html.eex```
-        - Add this code to allow automatic script registrations
+        - Add this code at the end of ```<head>``` section to allow automatic script registrations
         ```
         <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
         <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
@@ -130,23 +126,25 @@ defp aliases do
         <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
         <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
         ```
-  - 
+  
 
+## THAT's it!
 
+Your apps (their css and js) are automatically loaded as you need them and created with proper parameters.
 
-To start your Phoenix server:
-
-  * Setup project with `mix setup`, it installs both mix and npm packages
-  * Start Phoenix endpoint with `mix phx.server`
+  
+Start your Phoenix server with ```run.bat``` that automatically opens iex console.
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+## Configuration
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  * Page title can be configured in ```config.exs```. The settings are quite simple.  
+  ```
+  config :simplificator_3000,
+  page_title: "[Default page title that is also appended with title separator for each page]",
+  title_separator: "・"
+  
+  ```

@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <%= csrf_meta_tag() %>
-  <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/img/apple-icon.png") %>" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/images/apple-icon.png") %>" />
   <title><%= title(@conn, assigns) %></title>
 
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>

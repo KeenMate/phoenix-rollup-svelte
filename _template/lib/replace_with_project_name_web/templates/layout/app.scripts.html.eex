@@ -1,0 +1,10 @@
+<script>
+  // global scripts goes here
+
+  window.addEventListener("load", function() {
+    window.AppsManager.createAll();
+
+    // add additional javascript code global to this layout
+  });
+
+</script>
