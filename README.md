@@ -48,6 +48,10 @@ This component shows how can you create a dynamic form instead of using server s
 
 Page title helper is used in app.html.eex that looks for :page_title key in the connection assigns. Page title can be set from controller or view depending on what you prefer. Sometimes it makes sense to set all data in controller and sometimes you would use view, it makes no difference to the template helper.  
 
+```
+<title><%= title(@conn, assigns) %></title>
+```
+
 ## How it all works
 
 From technical point of view not that much has changed. This demo project is still a Phoenix project that you are already familiar with, we just replace Webpack content of `assets` folder with Rollup, added some new eex files and few lines of code here and there.
