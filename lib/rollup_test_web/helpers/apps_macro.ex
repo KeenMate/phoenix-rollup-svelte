@@ -4,11 +4,13 @@ defmodule RollupTestWeb.AppsMacro do
   defmacro __using__(options) do
     application = Keyword.fetch!(options, :application)
     path = Keyword.fetch!(options, :manifest_path)
+    full_path = Path.join(:code.priv_dir(application), path)
 
-    manifest = File.read!(Path.join(:code.priv_dir(application), path)) |> Jason.decode!()
+    manifest = full_path |> File.read!() |> Jason.decode!()
     manifest_escaped = Macro.escape(manifest)
 
     quote do
+      @external_resource unquote(full_path)
       @manifest unquote(manifest_escaped)
       @before_compile unquote(__MODULE__)
     end

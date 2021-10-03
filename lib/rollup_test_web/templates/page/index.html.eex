@@ -95,7 +95,7 @@
             <div
             class="leading-normal mt-0 mb-2 text-left w-1/2"
           >
-            <%= form_for @conn, Routes.page_path(@conn, :subscribe), [class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"], fn f -> %>
+            <%= form_for @conn, Routes.page_path(@conn, :subscribe), [class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"], fn _f -> %>
               <span data-app="subscription-form" />
              <% end %>
 
