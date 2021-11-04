@@ -57,10 +57,10 @@ config :rollup_test, RollupTestWeb.Endpoint,
 config :rollup_test, RollupTestWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/rollup_test_web/(live|views)/.*(ex)$",
-      ~r"lib/rollup_test_web/templates/.*(eex)$"
+      ~r"^(?:(?!\.elixir_ls)).*/priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"^(?:(?!\.elixir_ls)).*/priv/gettext/.*(po)$",
+      ~r"^(?:(?!\.elixir_ls)).*/lib/rollup_test_web/(live|views)/.*(ex)$",
+      ~r"^(?:(?!\.elixir_ls)).*/lib/rollup_test_web/templates/.*(eex)$"
     ]
   ]
 

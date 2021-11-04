@@ -7,10 +7,10 @@
   <meta name="theme-color" content="#000000" />
   <%= csrf_meta_tag() %>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/images/apple-icon.png") %>" />
+  <link rel="apple-touch-icon" sizes="76x76" href={Routes.static_path(@conn, "/images/apple-icon.png")} />
   <title><%= title(@conn, assigns) %></title>
 
-  <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/main.js") %>"></script>
+  <script defer type="text/javascript" src={Routes.static_path(@conn, "/js/main.js")}></script>
   <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
 
   <%= render_existing RollupTestWeb.LayoutView, "app.styles.html", assigns %>
