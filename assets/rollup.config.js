@@ -62,33 +62,25 @@ const main = {
       preventAssignment: true
     }),
 
-    // the postcss plugin is used to preprocess css
-    // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
-    postcss({
-      config: {
-        path: "./postcss.config.js",
-      },
-    }),
-
     // the svelte plugin converts .svelte files to .js equivalent
     svelte({
       // the preprocessor plugin allows you to use <style type="scss"> or <script lang="typescript"> inside .svelte files
       // for more info, see: https://www.npmjs.com/package/svelte-preprocess
       preprocess: sveltePreprocess({
         sourceMap: !production,
-        postcss: {
-          config: {
-            path: "./postcss.config.js",
-          },
-        },
+        postcss: true
       }),
 
       // enable run-time checks when not in production
       dev: !production,
+    }),
 
-      // take css output and write it to priv/static
-      css: (css) => {
-        css.write("main.css");
+    // the postcss plugin is used to preprocess css
+    // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
+    postcss({
+      extract: true,
+      config: {
+        path: "./postcss.config.js",
       },
     }),
 
@@ -159,9 +151,6 @@ const svelteAppConfiguration = name => ({
       ...includeEnv(),
       preventAssignment: true
     }),
-    // the postcss plugin is used to preprocess css
-    // for more info, see: https://www.npmjs.com/package/rollup-plugin-postcss
-    postcss(),
 
     // the svelte plugin converts .svelte files to .js equivalent
     svelte({
@@ -169,23 +158,17 @@ const svelteAppConfiguration = name => ({
       // for more info, see: https://www.npmjs.com/package/svelte-preprocess
       preprocess: sveltePreprocess({
         sourceMap: !production,
-        postcss: {
-          config: {
-            path: "./postcss.config.js",
-          },
-        },
+        postcss: true
       }),
 
       // enable run-time checks when not in production
       dev: !production,
+    }),
 
-      // enable custom elements API
-      // TODO: config value
-      // customElement: name === "like",
-
-      // take css output and write it to priv/static
-      css: (css) => {
-        css.write(`${name}.css`);
+    postcss({
+      extract: true,
+      config: {
+        path: "./postcss.config.js",
       },
     }),
 
