@@ -5,7 +5,7 @@ module.exports = {
     enabled: production,
     content: [
       "./apps/**/*.svelte",
-      "../lib/rollup_test_web/templates/**/*.html.eex"
+      "../lib/rollup_test_web/templates/**/*.html.*eex"
     ]
   },
   darkMode: false, // or 'media' or 'class'
