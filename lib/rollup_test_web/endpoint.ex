@@ -23,8 +23,8 @@ defmodule RollupTestWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :rollup_test,
-    gzip: true,
-    only: ~w(css fonts images webfonts js apps favicon.ico robots.txt)
+    gzip: true
+    # only: ~w(css fonts images webfonts js apps favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
