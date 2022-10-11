@@ -1,34 +1,39 @@
 defmodule RollupTestWeb.AppsMacro do
   require Logger
 
+  @moduledoc """
+
+  **path_in_static is relative path to static directory!**
+  """
+
   defmacro __using__(options) do
     application = Keyword.fetch!(options, :application)
-    path = Keyword.fetch!(options, :manifest_path)
-    full_path = Path.join(:code.priv_dir(application), path)
-
-    manifest = full_path |> File.read!() |> Jason.decode!()
+    path = Keyword.fetch!(options, :path_in_static)
+    manifest = RollupTestWeb.Helpers.AppsHelper.create_manifest(path,application)
     manifest_escaped = Macro.escape(manifest)
 
     quote do
-      @external_resource unquote(full_path)
       @manifest unquote(manifest_escaped)
       @before_compile unquote(__MODULE__)
     end
   end
 
+
   defmacro __before_compile__(env) do
     manifest = Module.get_attribute(env.module, :manifest)
 
-    [Enum.map(manifest, fn {_, app} ->
-      Logger.debug("Generating code for app: #{app["name"]}")
+    IO.inspect(manifest, label: "generated manifest")
+
+    [Enum.map(manifest, fn %{ name: name,style_path: style,script_path: script}  ->
+      Logger.debug("Generating code for app: #{name}")
 
       quote do
-        def app_style(unquote(app["name"])) do
-          unquote(app["stylePath"])
+        def app_style(unquote(name)) do
+          unquote(style)
         end
 
-        def app_script(unquote(app["name"])) do
-          unquote(app["scriptPath"])
+        def app_script(unquote(name)) do
+          unquote(script)
         end
       end
     end),
