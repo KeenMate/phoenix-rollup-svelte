@@ -85,7 +85,7 @@ steps:
       - dockerfile build
     image: appleboy/drone-ssh        
     settings:
-      host: 10.0.0.9
+      host: web-03.km8.vm
       port: 22
       username:
         from_secret: web-01_ssh_user
