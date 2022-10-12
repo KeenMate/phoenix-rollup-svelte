@@ -2,8 +2,13 @@
   "name": "assets",
   "version": "1.0.0",
   "scripts": {
-    "deploy": "rollup --config",
-    "watch": "rollup --config --watch"
+    "dev": "run-p dev:main dev:numbers dev:connect dev:like dev:notifications",
+    "dev:main": "vite build --config main.vite.config.js",
+    "dev:connect": "cross-env SVELTE_APP=connect vite build --config apps.vite.config.js",
+    "dev:like": "cross-env SVELTE_APP=like vite build --config apps.vite.config.js",
+    "dev:notifications": "cross-env SVELTE_APP=notifications vite build --config apps.vite.config.js",
+    "dev:numbers": "cross-env SVELTE_APP=numbers vite build --config apps.vite.config.js",
+    "dev:subscription-form": "cross-env SVELTE_APP=subscription-form vite build --config apps.vite.config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",
@@ -11,15 +16,12 @@
     "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^23.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-replace": "^5.0.0",
-    "@rollup/plugin-virtual": "^3.0.0",
+    "@sveltejs/vite-plugin-svelte": "^1.0.2",
     "autoprefixer": "^10.4.12",
     "CBuffer": "^2.2.0",
     "cssnano": "^5.1.13",
-    "sass": "^1.55.0",
     "notyf": "^3.10.0",
+    "npm-run-all": "^4.1.5",
     "object.fromentries": "^2.0.4",
     "postcss": "^8.4.17",
     "rollup": "^2.79.1",
@@ -30,9 +32,12 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^5.8.2",
     "rxjs": "^7.5.7",
+    "sass": "^1.55.0",
     "svelte": "^3.51.0",
     "svelte-environment-variables": "^1.0.3",
     "svelte-preprocess": "^4.10.7",
-    "tailwindcss": "^3.1.8"
+    "tailwindcss": "^3.1.8",
+    "cross-env": "^7.0.3",
+    "vite": "^3.1.0"
   }
 }

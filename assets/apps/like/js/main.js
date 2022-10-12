@@ -1,4 +1,3 @@
-import AppsManager from 'apps-manager';
 import App from './App.svelte'
 
 // instantiate the component
@@ -12,4 +11,4 @@ function constructor(element, props) {
   })
 }
 
-AppsManager.register("like", constructor);
+window.AppsManager.register("like", constructor);

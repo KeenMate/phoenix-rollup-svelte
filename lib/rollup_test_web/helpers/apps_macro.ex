@@ -10,6 +10,7 @@ defmodule RollupTestWeb.AppsMacro do
     application = Keyword.fetch!(options, :application)
     path = Keyword.fetch!(options, :path_in_static)
     manifest = RollupTestWeb.Helpers.AppsHelper.create_manifest(path,application)
+
     manifest_escaped = Macro.escape(manifest)
 
     quote do
@@ -39,11 +40,11 @@ defmodule RollupTestWeb.AppsMacro do
     end),
     quote do
       def app_style(app_name) do
-        raise "Style for application: #{app_name} not available"
+        # raise "Style for application: #{app_name} not available"
       end
 
       def app_script(app_name) do
-        raise "Script for application: #{app_name} not available"
+        # raise "Script for application: #{app_name} not available"
       end
     end
   ]
