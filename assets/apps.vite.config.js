@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
+import { visualizer } from "rollup-plugin-visualizer";
 
 const appName = process.env.SVELTE_APP;
 
@@ -10,8 +11,6 @@ export default defineConfig(({ mode }) => {
   // ...
   return {
     build: {
-      minify: "terser",
-
       emptyOutDir: true,
 
       sourcemap: true,
@@ -21,15 +20,6 @@ export default defineConfig(({ mode }) => {
         fileName: `main`,
       },
       outDir: `../priv/static/apps/${appName}/`,
-      // rollupOptions: {
-      //   external: ["apps-manager", "notification-manager"],
-      //   output: {
-      //     globals: {
-      //       "apps-manager": "AppsManager",
-      //       "notification-manager": "NotificationManager",
-      //     },
-      //   },
-      // },
     },
     resolve: {
       dedupe: ["svelte"],
@@ -42,6 +32,7 @@ export default defineConfig(({ mode }) => {
         }),
         dev: !production,
       }),
+      visualizer({ filename: `stats/${appName}.html` }),
     ],
   };
 });

@@ -11,6 +11,4 @@ function constructor(element, props) {
   });
 }
 
-window.window.AppsManager.register("notifications", constructor);
-
-console.log("hello there");
+window.AppsManager.register("notifications", constructor);

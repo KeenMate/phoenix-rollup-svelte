@@ -2,16 +2,12 @@ import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
 import copy from "rollup-plugin-copy";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig(({ mode }) => {
   const production = mode === "prod";
-
-  // ...
   return {
-    
     build: {
-      
-      minify: false,
       target: "es2016",
       lib: {
         entry: "js/main.js",
@@ -50,6 +46,7 @@ export default defineConfig(({ mode }) => {
           },
         ],
       }),
+      visualizer({ filename: `stats/main.html` }),
     ],
   };
 });
