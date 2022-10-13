@@ -17,6 +17,7 @@ defmodule RollupTestWeb.Helpers.AppsHelper do
 
   def create_manifest(apps_path,application)  do
     full_path = Path.join([:code.priv_dir(application),"static", apps_path])
+
     get_directories(full_path) |> Enum.map(&(create_manifest_entry(&1,apps_path)))
   end
 

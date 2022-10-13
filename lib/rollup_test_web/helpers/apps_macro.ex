@@ -9,8 +9,8 @@ defmodule RollupTestWeb.AppsMacro do
   defmacro __using__(options) do
     application = Keyword.fetch!(options, :application)
     path = Keyword.fetch!(options, :path_in_static)
-    manifest = RollupTestWeb.Helpers.AppsHelper.create_manifest(path,application)
 
+    manifest = RollupTestWeb.Helpers.AppsHelper.create_manifest(path,application)
     manifest_escaped = Macro.escape(manifest)
 
     quote do
