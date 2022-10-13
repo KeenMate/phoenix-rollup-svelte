@@ -8,12 +8,14 @@ const appName = process.env.SVELTE_APP;
 console.debug(`[BUILDING] ${process.env.SVELTE_APP}`);
 export default defineConfig(({ mode }) => {
   const production = mode === "prod";
+  const ci = process.env.CI == "true";
+
   // ...
   return {
     build: {
       emptyOutDir: true,
-
-      sourcemap: true,
+      minify: production ? "esbuild" : false,
+      sourcemap: !production,
       lib: {
         entry: `apps/${appName}/js/main.js`,
         name: "app",
@@ -32,7 +34,7 @@ export default defineConfig(({ mode }) => {
         }),
         dev: !production,
       }),
-      visualizer({ filename: `stats/${appName}.html` }),
+      ci && visualizer({ filename: `stats/${appName}.html` }),
     ],
   };
 });

@@ -5,10 +5,14 @@ import copy from "rollup-plugin-copy";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig(({ mode }) => {
+  console.log(mode);
   const production = mode === "prod";
+  const ci = process.env.CI == "true";
+
   return {
     build: {
-      target: "es2016",
+      minify: production ? "esbuild" : false,
+
       lib: {
         entry: "js/main.js",
         format: "iife",
@@ -46,7 +50,7 @@ export default defineConfig(({ mode }) => {
           },
         ],
       }),
-      visualizer({ filename: `stats/main.html` }),
+      ci && visualizer({ filename: `stats/main.html` }),
     ],
   };
 });
