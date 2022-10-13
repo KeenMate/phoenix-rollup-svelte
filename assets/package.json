@@ -2,22 +2,9 @@
   "name": "assets",
   "version": "1.0.0",
   "scripts": {
-    "dev": "run-p dev:main dev:numbers dev:connect dev:like dev:notifications",
-    "dev-s": "run-s dev:main dev:numbers dev:connect dev:like dev:notifications",
-    "dev:main": "vite build --mode dev --config main.vite.config.js",
-    "dev:connect": "cross-env SVELTE_APP=connect vite build --mode dev --config apps.vite.config.js",
-    "dev:like": "cross-env SVELTE_APP=like vite build --mode dev --config apps.vite.config.js",
-    "dev:notifications": "cross-env SVELTE_APP=notifications vite build --mode dev --config apps.vite.config.js",
-    "dev:numbers": "cross-env SVELTE_APP=numbers vite build --mode dev --config apps.vite.config.js",
-    "dev:subscription-form": "cross-env SVELTE_APP=subscription-form vite build --mode dev --config apps.vite.config.js",
-    "build": "run-p build:main build:numbers build:connect build:like build:notifications",
-    "build-s": "run-s build:main build:numbers build:connect build:like build:notifications",
-    "build:main": "vite build --mode prod --config main.vite.config.js",
-    "build:connect": "cross-env SVELTE_APP=connect vite build --mode prod --config apps.vite.config.js",
-    "build:like": "cross-env SVELTE_APP=like vite build --mode prod --config apps.vite.config.js",
-    "build:notifications": "cross-env SVELTE_APP=notifications vite build --mode prod --config apps.vite.config.js",
-    "build:numbers": "cross-env SVELTE_APP=numbers vite build --mode prod --config apps.vite.config.js",
-    "build:subscription-form": "cross-env SVELTE_APP=subscription-form vite build --mode prod --config apps.vite.config.js"
+    "runner": "node scriptRunner.js",
+    "dev": "npm run runner dev watch",
+    "build": "npm run runner prod"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",

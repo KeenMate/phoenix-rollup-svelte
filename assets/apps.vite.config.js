@@ -5,7 +5,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 const appName = process.env.SVELTE_APP;
 
-console.debug(`[BUILDING] ${process.env.SVELTE_APP}`);
+console.debug(`app: ${process.env.SVELTE_APP}`);
 export default defineConfig(({ mode }) => {
   const production = mode === "prod";
   const ci = process.env.CI == "true";
