@@ -2,19 +2,23 @@
   "name": "assets",
   "version": "1.0.0",
   "scripts": {
-    "runner": "node scriptRunner.js",
-    "dev": "npm run runner dev watch",
-    "build": "npm run runner prod"
+    "builder": "node scriptRunner.js",
+    "dev": "node scriptRunner.js -m dev",
+    "dev:watch": "node scriptRunner.js -m dev -w",
+    "prod": "node scriptRunner.js -m prod",
+    "prod:watch": "node scriptRunner.js -m prod -w"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "phoenix_html": "file:../deps/phoenix_html",
+    "yargs": "^17.6.0"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.2",
     "autoprefixer": "^10.4.12",
     "CBuffer": "^2.2.0",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.1.13",
     "notyf": "^3.10.0",
     "npm-run-all": "^4.1.5",
@@ -33,7 +37,6 @@
     "svelte-environment-variables": "^1.0.3",
     "svelte-preprocess": "^4.10.7",
     "tailwindcss": "^3.1.8",
-    "cross-env": "^7.0.3",
     "vite": "^3.1.0"
   }
 }

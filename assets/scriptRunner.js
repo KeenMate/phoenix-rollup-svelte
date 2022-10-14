@@ -1,48 +1,76 @@
 const readdir = require("fs/promises").readdir;
 const { exec } = require("child_process");
 const { stdout } = require("process");
-var settings;
-async function run() {
-  let args = process.argv;
 
-  let mode = args[2] ?? "prod";
+function parseArgumetns() {
+  let args = require("yargs/yargs")(process.argv.slice(2))
+    .alias("w", "watch")
+    .describe("w", "Recompile when files change")
+    .default("w", false)
+    .alias("m", "mode")
+    .describe("m", "Build mode")
+    .describe("m", "Build mode")
+    .choices("m", ["dev", "prod"])
+    .nargs("m", 1)
+    .demandOption(["m"])
+    .describe("d", "debug logs")
+    .boolean(["d", "w"])
+    .help("h")
+    .alias("h", "help").argv;
 
-  let watch = shouldWatch(args);
-
-  settings = { watch, mode };
-  console.log(settings);
-
-  let app = args[4];
-
-  let commands;
-
-  if (app) {
-    if (app == "main") {
-      commands = [createMainCommand()];
-    } else {
-      commands = [createCommand(app)];
-    }
-  } else {
-    let aplications = await getDirectories("apps");
-
-    commands = createCommands(aplications);
+  if (args.d) {
+    console.log(args);
   }
 
-  console.log(commands);
+  return { watch: args.w, mode: args.m, apps: args._, debug: !!args.d };
+}
+
+var settings;
+async function run() {
+  settings = parseArgumetns();
+
+  if (settings.debug) {
+    console.debug({ settings });
+  }
+
+  let commands = await getCommands();
+
+  if (settings.debug) {
+    console.debug({ commands });
+  }
 
   executeCommands(commands);
 }
 
+async function getCommands() {
+  if (settings.apps?.length > 0) {
+    return createCommands(settings.apps);
+  } else {
+    let aplications = await getDirectories("apps");
+    aplications.push("main");
+
+    return createCommands(aplications);
+  }
+}
+
 function createCommands(aplications) {
-  let commands = aplications.map((name) => createCommand(name));
+  console.log("starting build for aplication: " + aplications.join(", "));
 
-  commands.push(createMainCommand());
+  if (settings.debug) {
+    console.debug({ aplications });
+  }
 
-  return commands;
+  return aplications.map((name) => createCommand(name));
 }
 
 function createCommand(name) {
-  let script = `cross-env SVELTE_APP=${name} vite build --mode ${settings.mode} --config apps.vite.config.js`;
+  let script;
+
+  if (name === "main") {
+    script = ` vite build --mode ${settings.mode} --config main.vite.config.js `;
+  } else {
+    script = `cross-env SVELTE_APP=${name} vite build --mode ${settings.mode} --config apps.vite.config.js`;
+  }
 
   if (settings.watch) {
     script += " --watch";
@@ -51,38 +79,27 @@ function createCommand(name) {
   return { name, cmd: script };
 }
 
-function createMainCommand(mode, watch) {
-  let script = ` vite build --mode ${settings.mode} --config main.vite.config.js `;
-
-  if (settings.watch) {
-    script += " --watch";
-  }
-
-  return { name: "main", cmd: script };
-}
-
-function executeCommands(scripts) {
+async function executeCommands(scripts) {
   scripts.map(async (command) => executeCommand(command));
 }
 
 function executeCommand(script) {
+  console.log("starting process for " + script.name);
   let process = exec(script.cmd);
   //stream output from process to console
   process.stdout.on("data", (data) => PassToStdout(script.name, data));
+
+  process.stderr.on("data", (data) => PassToStdout(script.name, data));
 }
 
-function PassToStdout(name, data) {
+function PassToStdout(name, data, err) {
   const Reset = "\u001b[0m";
   const Gray = "\u001b[38;5;239m";
+  const Red = "\u001b[31m";
 
-  stdout.write(`${Gray}[${name}]${Reset}  ${data}`);
-}
+  let ansiColor = err ? Red : Gray;
 
-function shouldWatch(args) {
-  if (args.length < 4) return false;
-  if (args[3] == "watch") return true;
-
-  return false;
+  stdout.write(`${ansiColor}[${name}]${Reset}  ${data}`);
 }
 
 async function getDirectories(file) {
