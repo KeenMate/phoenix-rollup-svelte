@@ -2,11 +2,11 @@
   "name": "assets",
   "version": "1.0.0",
   "scripts": {
-    "builder": "node scriptRunner.js",
-    "dev": "node scriptRunner.js -m dev",
-    "dev:watch": "node scriptRunner.js -m dev -w",
-    "prod": "node scriptRunner.js -m prod",
-    "prod:watch": "node scriptRunner.js -m prod -w"
+    "builder": "node builder.js",
+    "dev": "node builder.js -m dev",
+    "dev:watch": "node builder.js -m dev -w",
+    "prod": "node builder.js -m prod",
+    "prod:watch": "node builder.js -m prod -w"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",
