@@ -93,13 +93,21 @@ function executeCommand(script) {
 }
 
 function PassToStdout(name, data, err) {
+  let withoutLastEnter = data.replace(/\n+$/, "");
+
+  let formattedData = withoutLastEnter.replace(/^/gm, putAppName(name, err));
+
+  stdout.write(formattedData + "\n");
+}
+
+function putAppName(name, err) {
   const Reset = "\u001b[0m";
   const Gray = "\u001b[38;5;239m";
   const Red = "\u001b[31m";
 
   let ansiColor = err ? Red : Gray;
 
-  stdout.write(`${ansiColor}[${name}]${Reset}  ${data}`);
+  return `${ansiColor}[${name}]${Reset} `;
 }
 
 async function getDirectories(file) {
