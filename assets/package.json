@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",
+    "CBuffer": "^2.2.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
+    "tailwindcss": "^3.1.8",
     "yargs": "^17.6.0"
   },
   "devDependencies": {
