@@ -87,12 +87,12 @@ function executeCommand(script) {
   console.log("starting process for " + script.name);
   let process = exec(script.cmd);
   //stream output from process to console
-  process.stdout.on("data", (data) => PassToStdout(script.name, data));
+  process.stdout.on("data", (data) => passToStdout(script.name, data));
 
-  process.stderr.on("data", (data) => PassToStdout(script.name, data));
+  process.stderr.on("data", (data) => passToStdout(script.name, data));
 }
 
-function PassToStdout(name, data, err) {
+function passToStdout(name, data, err) {
   let withoutLastEnter = data.replace(/\n+$/, "");
 
   let formattedData = withoutLastEnter.replace(/^/gm, putAppName(name, err));
