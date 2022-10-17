@@ -61,7 +61,7 @@ defmodule RollupTest.MixProject do
     [
       setup: ["assets.setup", "assets.build", "deps.get"],
       "assets.setup": ["cmd --cd assets npm i"],
-      "assets.build": ["cmd --cd assets npm run build"],
+      "assets.build": ["cmd --cd assets npm run prod"],
       test: ["test"]
     ]
   end
