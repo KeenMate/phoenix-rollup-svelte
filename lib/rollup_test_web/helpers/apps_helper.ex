@@ -1,4 +1,4 @@
-defmodule RollupTestWeb.Helpers.AppsHelper do
+defmodule RollupTestWeb.Apps.AppsHelper do
   def get_directories(path) do
     File.ls!(path) |> Enum.filter(&File.dir?(Path.join(path, &1)))
   end
