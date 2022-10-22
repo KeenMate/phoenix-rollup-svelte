@@ -1,7 +1,7 @@
 const readdir = require("fs/promises").readdir;
 const { exec } = require("child_process");
 const { stdout } = require("process");
-
+const fs = require("fs");
 function parseArgumetns() {
   let args = require("yargs/yargs")(process.argv.slice(2))
     .alias("w", "watch")
@@ -87,12 +87,12 @@ function executeCommand(script) {
   console.log("starting process for " + script.name);
   let process = exec(script.cmd);
   //stream output from process to console
-  process.stdout.on("data", (data) => PassToStdout(script.name, data));
+  process.stdout.on("data", (data) => passToStdout(script.name, data));
 
-  process.stderr.on("data", (data) => PassToStdout(script.name, data));
+  process.stderr.on("data", (data) => passToStdout(script.name, data));
 }
 
-function PassToStdout(name, data, err) {
+function passToStdout(name, data, err) {
   let withoutLastEnter = data.replace(/\n+$/, "");
 
   let formattedData = withoutLastEnter.replace(/^/gm, putAppName(name, err));
@@ -112,6 +112,10 @@ function putAppName(name, err) {
 
 async function getDirectories(file) {
   let fullPath = require("path").resolve(__dirname, file);
+
+  if (!fs.existsSync(fullPath)) {
+    return [];
+  }
 
   let directories = (
     await readdir(fullPath, {

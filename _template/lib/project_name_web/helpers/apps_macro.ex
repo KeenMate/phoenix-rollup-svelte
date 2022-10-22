@@ -1,4 +1,4 @@
-defmodule ProjectNameWeb.AppsMacro do
+defmodule ProjectNameWeb.Apps.AppsMacro do
   require Logger
 
   @moduledoc """
@@ -10,7 +10,7 @@ defmodule ProjectNameWeb.AppsMacro do
     application = Keyword.fetch!(options, :application)
     path = Keyword.fetch!(options, :path_in_static)
 
-    manifest = ProjectNameWeb.Helpers.AppsHelper.create_manifest(path,application)
+    manifest = ProjectNameWeb.Apps.AppsHelper.create_manifest(path,application)
     manifest_escaped = Macro.escape(manifest)
 
     quote do

@@ -1,7 +1,7 @@
 const readdir = require("fs/promises").readdir;
 const { exec } = require("child_process");
 const { stdout } = require("process");
-
+const fs = require("fs");
 function parseArgumetns() {
   let args = require("yargs/yargs")(process.argv.slice(2))
     .alias("w", "watch")
@@ -112,6 +112,10 @@ function putAppName(name, err) {
 
 async function getDirectories(file) {
   let fullPath = require("path").resolve(__dirname, file);
+
+  if (!fs.existsSync(fullPath)) {
+    return [];
+  }
 
   let directories = (
     await readdir(fullPath, {

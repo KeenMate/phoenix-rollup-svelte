@@ -1,5 +1,5 @@
 defmodule ProjectNameWeb.Apps do
-  use ProjectNameWeb.AppsMacro, path_in_static: "/apps/", application: :rollup_test
+  use ProjectNameWeb.Apps.AppsMacro, path_in_static: "/apps/", application: :project_name
 
   def collect_scripts([]), do: []
 
