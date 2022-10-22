@@ -20,6 +20,7 @@ defmodule RollupTestWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: RollupTestWeb
+      #For page titles
       use Simplificator3000Phoenix, :controller
 
       import Plug.Conn
@@ -34,6 +35,7 @@ defmodule RollupTestWeb do
         root: "lib/rollup_test_web/templates",
         namespace: RollupTestWeb
 
+      #For page titles
       use Simplificator3000Phoenix, :view
 
       # Import convenience functions from controllers
