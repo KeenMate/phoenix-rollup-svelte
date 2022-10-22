@@ -20,7 +20,7 @@ defmodule RollupTestWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: RollupTestWeb
-      use Simplificator3000, :controller
+      use Simplificator3000Phoenix, :controller
 
       import Plug.Conn
       import RollupTestWeb.Gettext
@@ -34,7 +34,7 @@ defmodule RollupTestWeb do
         root: "lib/rollup_test_web/templates",
         namespace: RollupTestWeb
 
-      use Simplificator3000, :view
+      use Simplificator3000Phoenix, :view
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -81,8 +81,4 @@ defmodule RollupTestWeb do
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end
-end
-
-defmodule PageTitleMacroModule do
-
 end

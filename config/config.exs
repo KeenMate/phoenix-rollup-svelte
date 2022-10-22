@@ -8,10 +8,7 @@
 import Config
 
 config :rollup_test,
-  page_title: "Svelte Demo"
-
-config :simplificator_3000,
-  page_title: "Svelte Demo",
+  page_title: "Phoenix-rolllup-svelte",
   title_separator: "・"
 
 # config :rollup_test,
