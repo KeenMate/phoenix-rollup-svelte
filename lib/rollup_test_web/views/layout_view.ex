@@ -1,4 +1,6 @@
 defmodule RollupTestWeb.LayoutView do
   use RollupTestWeb, :view
-  use Simplificator3000, :layout
+
+  #For page titles
+  use Simplificator3000Phoenix, :layout
 end

@@ -1,5 +1,4 @@
 <script>
-  import NotificationManager from "notification-manager";
 
   let state = "none";
 
@@ -13,7 +12,7 @@
         );
         break;
       case "connecting":
-        NotificationManager.warn("Already connecting");
+        window.NotificationManager.warn("Already connecting");
         break;
       case "connected":
         simulateConnectionChange(
@@ -23,7 +22,7 @@
         );
         break;
       case "disconnecting":
-        NotificationManager.warn("Already disconnecting! STOP PRESSURING ME!");
+        window.NotificationManager.warn("Already disconnecting! STOP PRESSURING ME!");
         break;
       case "disconnected":
         simulateConnectionChange(
@@ -39,7 +38,7 @@
     state = tempState;
     setTimeout(() => {
       state = finalState;
-      NotificationManager.success(message);
+      window.NotificationManager.success(message);
     }, 900);
   }
 </script>

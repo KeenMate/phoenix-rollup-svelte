@@ -7,7 +7,7 @@ defmodule RollupTest.MixProject do
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -47,7 +47,7 @@ defmodule RollupTest.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:simplificator_3000, "~> 0.1.0"}
+      {:simplificator_3000_phoenix, "~> 0.1.0"}
     ]
   end
 
@@ -61,10 +61,7 @@ defmodule RollupTest.MixProject do
     [
       setup: ["assets.setup", "assets.build", "deps.get"],
       "assets.setup": ["cmd --cd assets npm i"],
-      "assets.build": ["cmd --cd assets npm run deploy"],
-      # "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      # "ecto.reset": ["ecto.drop", "ecto.setup"],
-      # test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      "assets.build": ["cmd --cd assets npm run prod"],
       test: ["test"]
     ]
   end

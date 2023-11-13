@@ -1,6 +1,6 @@
 <script>
-  import NotificationManager from "notification-manager";
 
+  
   export let id;
   export let liked;
 
@@ -9,14 +9,14 @@
       if (liked !== "true") {
         await sendRequest(true);
         liked = "true";
-        NotificationManager.success("Why, thank you");
+        window.NotificationManager.success("Why, thank you");
       } else {
         await sendRequest(false);
         liked = "false";
-        NotificationManager.success("This made me sad");
+        window.NotificationManager.success("This made me sad");
       }
     } catch {
-      NotificationManager.error("Error occurred");
+      window.NotificationManager.error("Error occurred");
     }
   }
 

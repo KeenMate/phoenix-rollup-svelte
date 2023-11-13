@@ -1,5 +1,5 @@
-defmodule [REPLACE_WITH_WEB_PROJECT].Apps do
-  use [REPLACE_WITH_WEB_PROJECT].AppsMacro, manifest_path: "/static/apps/manifest.json", application: :rollup_test
+defmodule ProjectNameWeb.Apps do
+  use ProjectNameWeb.Apps.AppsMacro, path_in_static: "/apps/", application: :project_name
 
   def collect_scripts([]), do: []
 

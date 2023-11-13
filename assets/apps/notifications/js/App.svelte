@@ -1,13 +1,12 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import NotificationManager from "notification-manager";
 
   let subscription;
   let notifications = [];
   let notificationsVisible = false;
 
   onMount(() => {
-    subscription = NotificationManager.messagesSubject.subscribe((x) => {
+    subscription = window.NotificationManager.messagesSubject.subscribe((x) => {
       notifications = x;
     });
   });
@@ -23,7 +22,10 @@
   }
 </script>
 
-<div class="z-10 px-3 py-4 lg:py-2 flex flex-col-reverse" style="position:relative">
+<div
+  class="z-10 px-3 py-4 lg:py-2 flex flex-col-reverse"
+  style="position:relative"
+>
   <button
     on:click={notificationsVisible ? hideNotifications() : showNotifications()}
     class="rounded lg:text-gray-300 text-gray-500 text-right focus:outline-none"
@@ -40,8 +42,9 @@
         ? 'text-red-500'
         : 'lg:text-gray-300 text-gray-500'} fill-current"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <g
         ><path
           d="M20.012,4.661c-2.212,0.573-4.284,1.494-6.129,2.735L10.89,4.402l-5.656,5.657l3.042,3.042   c-1.163,1.784-2.036,3.766-2.583,5.883h-4.66v10.031h4.66c0.56,2.165,1.458,4.193,2.66,6.009l-3.118,3.118l5.656,5.656l3.119-3.118   c1.819,1.205,3.853,2.104,6.023,2.664V48h4.062v-8.047C15.697,39.465,9.032,32.52,9.032,24c0-8.521,6.665-15.465,15.062-15.953V0   h-4.083V4.661z"
         />
@@ -74,5 +77,4 @@
 </div>
 
 <style>
- 
 </style>
